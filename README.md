@@ -2,9 +2,6 @@
 
 This repository contains the simulation, statistical analysis, neural network modeling, and interactive 3D visualizations for the PreMiEr (Preventing Emerging Microbial Threats) project. The work demonstrates how city-wide microbiome sensor networks in homes, hospitals, and commercial buildings can predict and manage allergy outcomes and pathogen transmission.
 
-Dashboard URL after GitHub Pages is enabled for this repo:
-`https://ssun6.github.io/claudePremierVisualizations/visualizations/dashboard.html`
-
 ## What's in this repository
 
 ### Manuscript (`manuscript/`)
@@ -15,9 +12,6 @@ Dashboard URL after GitHub Pages is enabled for this repo:
 ### Interactive 3D Visualizations (`visualizations/`)
 
 All HTML files are self-contained and run offline by opening directly in a browser (file:// protocol). No server or internet connection required.
-
-If this repository is published with GitHub Pages, the main dashboard will be available at:
-`https://ssun6.github.io/claudePremierVisualizations/visualizations/dashboard.html`
 
 - **dashboard.html** — The main operations console. A full 3D city (Plaza Midwood, Charlotte NC) with 4,000 households, 4 hospitals, and 18 downtown skyscrapers. Features include:
   - ~600 active "subscriber" households with simulated 90-day sensor data
