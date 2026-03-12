@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PreMiEr Microbiome Visualizations</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; background: #f4f5f7; color: #1a1f2e; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1e2433 0%, #2a3a5a 100%); color: #fff; padding: 48px 24px 40px; text-align: center; }
+  .header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .header p { font-size: 15px; color: #93a3c0; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+  .logo { width: 72px; height: 72px; border-radius: 12px; background: #fff; object-fit: contain; padding: 4px; margin-bottom: 16px; }
+  .cards { max-width: 960px; margin: -32px auto 48px; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .card { background: #fff; border-radius: 12px; border: 1px solid #e2e5ea; overflow: hidden; transition: all 0.2s; text-decoration: none; color: inherit; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-color: #2563eb; }
+  .card-color { height: 6px; }
+  .card-body { padding: 20px 24px 24px; }
+  .card h2 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .card p { font-size: 13px; color: #5a6377; line-height: 1.55; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; padding: 3px 8px; border-radius: 4px; margin-top: 12px; }
+  .section { max-width: 960px; margin: 0 auto 48px; padding: 0 24px; }
+  .section h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .section p { font-size: 14px; color: #5a6377; line-height: 1.7; max-width: 700px; }
+  .section a { color: #2563eb; text-decoration: none; font-weight: 500; }
+  .section a:hover { text-decoration: underline; }
+  .footer { text-align: center; padding: 24px; font-size: 12px; color: #8b95a8; border-top: 1px solid #e2e5ea; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img src="img/premier-logo.png" alt="PreMiEr" class="logo">
+  <h1>PreMiEr Microbiome Visualizations</h1>
+  <p>Interactive 3D visualizations and simulation results for the Preventing Emerging Microbial Threats (PreMiEr) city-wide microbiome sensor network project.</p>
+</div>
+
+<div class="cards">
+
+  <a href="visualizations/dashboard.html" class="card">
+    <div class="card-color" style="background: linear-gradient(90deg, #2563eb, #3b82f6);"></div>
+    <div class="card-body">
+      <h2>Operations Dashboard</h2>
+      <p>Full 3D city with 4,000 households, 4 hospitals, and 18 skyscrapers. Explore interior views with sensor data, charts, and labeled monitoring bots. Toggle color overlays for allergy, humidity, PM2.5, and more.</p>
+      <span class="tag" style="background: #eff6ff; color: #2563eb;">Main Application</span>
+    </div>
+  </a>
+
+  <a href="visualizations/worldView.html" class="card">
+    <div class="card-color" style="background: linear-gradient(90deg, #16a34a, #22c55e);"></div>
+    <div class="card-body">
+      <h2>City Overview</h2>
+      <p>City-scale 3D scene showing the intelligent microbiome management concept across hospital, residential, and commercial buildings with multiple robot types.</p>
+      <span class="tag" style="background: #f0fdf4; color: #16a34a;">Figure 1C</span>
+    </div>
+  </a>
+
+  <a href="visualizations/hospital.html" class="card">
+    <div class="card-color" style="background: linear-gradient(90deg, #dc2626, #ef4444);"></div>
+    <div class="card-body">
+      <h2>Hospital ICU</h2>
+      <p>P-trap biofilm detection and probiotic intervention in an ICU setting. Features CRE pathogen visualization, roomba patrol bots, pipe robots, and competitive exclusion display.</p>
+      <span class="tag" style="background: #fef2f2; color: #dc2626;">Narrative A</span>
+    </div>
+  </a>
+
+  <a href="visualizations/basement.html" class="card">
+    <div class="card-color" style="background: linear-gradient(90deg, #d97706, #f59e0b);"></div>
+    <div class="card-body">
+      <h2>Basement Remediation</h2>
+      <p>Residential basement fungal mold detection and remediation. Patrol and spray bots with spore/VOC particle systems and intervention workflow visualization.</p>
+      <span class="tag" style="background: #fffbeb; color: #d97706;">Narrative B</span>
+    </div>
+  </a>
+
+</div>
+
+<div class="section">
+  <h2>About this project</h2>
+  <p>This repository contains the simulation, statistical analysis, neural network modeling, and interactive 3D visualizations for PreMiEr. The simulation models 4,000 households with AR(1) microbiome dynamics, environmental sensors, and an AllergyANN neural network (R&sup2;=0.787). See the <a href="manuscript/microbiome_allergy_simulation.pdf">full manuscript (PDF)</a> for details, or browse the <a href="https://github.com/afodor/claudePremierVisualizations">source code on GitHub</a>.</p>
+</div>
+
+<div class="footer">
+  PreMiEr &mdash; Preventing Emerging Microbial Threats &mdash; NSF ERC
+</div>
+
+</body>
+</html>
