@@ -1,0 +1,729 @@
+\documentclass[11pt,letterpaper]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{lineno}
+
+\doublespacing
+\linenumbers
+
+\title{A Simulation Framework for Detecting Causal Microbial Taxa in Built-Environment Allergy Studies: Power Analysis for a Household Sensor Network}
+
+\author{
+Anthony Fodor\textsuperscript{1,*}
+\\[6pt]
+\textsuperscript{1}Department of Bioinformatics and Genomics, University of North Carolina at Charlotte, Charlotte, NC 28223, USA\\
+\textsuperscript{*}Corresponding author: \href{mailto:afodor@uncc.edu}{afodor@uncc.edu}
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The built-environment microbiome represents a largely unexplored determinant of human respiratory and allergic health. While advances in environmental DNA sequencing and low-cost sensor technology now make continuous household monitoring feasible, the statistical power required to detect microbial contributions to allergy symptoms from such monitoring systems remains poorly characterized. Here we present a simulation framework that generates realistic longitudinal data for household microbiome-allergy studies, calibrated to empirical temporal dynamics from a 61-day daily sampling study of residential sink P-trap communities (Hill et al., 2026). Our framework simulates 100 microbial taxa with first-order autoregressive [AR(1)] dynamics spanning the empirically observed coefficient of variation range of 5--25\%, five environmental covariates with realistic temporal structure, and daily allergy scores driven by a sparse set of causal taxa with effect sizes ranging from 2--10\%. We evaluate four analytical approaches for recovering causal taxa: elastic net regularized regression, per-taxon univariate linear models with Benjamini-Hochberg (BH) FDR correction, mixed-effects models with nested random intercepts, and a mediation analysis framework that decomposes taxon-allergy associations into direct effects versus environment-confounded paths. Elastic net achieves $>$93\% sensitivity with 20+ households and 90+ days but suffers from high false discovery rates ($>$92\%). Univariate models with BH correction improve interpretability but reveal a structural problem: environment-linked non-causal taxa generate persistent false positives (10--15 per analysis) because environmental parameters simultaneously drive both taxon abundances and allergy symptoms. Increasing sample size improves sensitivity but does not eliminate these confounded associations. Mediation analysis, which classifies taxa based on whether their allergy association survives adjustment for environmental covariates, reduces false positives from $\sim$20 to $\sim$9 compared to the standard approach, correctly identifying known environment-linked taxa as confounded. However, residual false positives from non-environment-related spurious associations remain, and the observed FDR ($\sim$70\%) still substantially exceeds the nominal 5\% threshold. These results demonstrate that environmental confounding---not simply multiple testing---is the primary driver of false discoveries in built-environment microbiome studies, and that analytical strategies must explicitly account for the shared environmental drivers of both microbial community composition and health outcomes.
+\end{abstract}
+
+\textbf{Keywords:} built-environment microbiome, allergy, simulation, power analysis, elastic net, mediation analysis, environmental confounding, longitudinal study design, sensor network
+
+\clearpage
+
+\section{Introduction}
+
+The built environment---comprising the indoor spaces where people spend approximately 90\% of their time---harbors complex microbial communities that residents inhale, ingest, and contact daily \citep{adams2015microbiota}. Epidemiological studies have linked indoor microbial exposures to both protective and pathogenic effects on respiratory health: farm-dwelling children exposed to diverse environmental microbiota show reduced asthma prevalence \citep{ege2011exposure}, while indoor mold and fungal exposures are consistently associated with allergic sensitization and exacerbation \citep{mendell2011respiratory}. Despite these associations, the specific microbial taxa driving allergic responses in typical residential settings remain largely unidentified, in part because most studies rely on cross-sectional sampling that cannot capture the dynamic interplay between fluctuating microbial exposures and symptom trajectories.
+
+Recent technological advances are converging to make continuous household microbiome monitoring feasible. Environmental DNA sequencing costs continue to fall, miniaturized particulate and volatile organic compound sensors enable continuous air quality monitoring, and mobile health platforms allow real-time symptom tracking. We envision a household sensor network (Figure~\ref{fig:schematic}) comprising microbial sampling units deployed in key indoor locations (kitchen, bathroom, HVAC system) alongside environmental monitors for temperature, humidity, particulate matter (PM\textsubscript{2.5}), carbon dioxide (CO\textsubscript{2}), and fungal spore concentration, coupled with a mobile application through which household members record daily allergy severity scores.
+
+A critical question for the design of such studies is: \emph{given realistic levels of microbial community variability, environmental noise, and between-person heterogeneity, how many households and how many days of sampling are required to detect microbial taxa that contribute modestly (2--10\%) to allergy symptom severity?}
+
+Answering this question requires a realistic simulation framework that captures the key statistical challenges of the problem: high-dimensional predictors (100+ taxa), compositional constraints, temporal autocorrelation in both exposures and outcomes, hierarchical structure (observations nested within persons nested within households), and the need for variable selection in the presence of many null predictors.
+
+In this paper, we present such a framework. We calibrate the day-to-day dynamics of simulated microbial taxa to empirical data from Hill et al. (2026), who performed the first daily-resolution longitudinal characterization of residential sink P-trap bacterial communities over 61 consecutive days. Their study revealed that even adjacent sinks in a shared bathroom can exhibit dramatically different temporal stability profiles---from highly deterministic communities with a coefficient of variation (CV) of 4.9\% and strong temporal autocorrelation, to stochastic communities with a CV of 26.5\% and no temporal predictability. This range provides an empirical basis for simulating the diversity of temporal behaviors expected across taxa in a household microbiome study.
+
+We simulate longitudinal data for varying numbers of households, each containing multiple family members who provide daily allergy reports. A sparse set of 5 ``causal'' taxa, embedded among 95 null taxa, drive allergy severity with effect sizes ranging from 2\% to 10\%---a range chosen to represent biologically plausible but modest contributions from individual microbial taxa. We then apply elastic net regularized regression to the simulated data and evaluate the power to correctly identify the causal taxa as a function of study size, duration, and effect magnitude.
+
+\section{Methods}
+
+\subsection{Study Design Concept}
+
+The envisioned study design (Figure~\ref{fig:schematic}) deploys a multi-modal sensor network in residential homes. Each household is equipped with:
+
+\begin{itemize}
+    \item \textbf{Microbial sampling units}: automated or manual daily collection of environmental samples from high-contact surfaces and air, processed via amplicon sequencing (e.g., full-length 16S rRNA) to quantify the 100 most abundant bacterial taxa.
+    \item \textbf{Environmental sensors}: continuous monitoring of indoor temperature (\textdegree C), relative humidity (\%), PM\textsubscript{2.5} concentration ($\mu$g/m\textsuperscript{3}), CO\textsubscript{2} levels (ppm), and airborne fungal spore concentration (spores/m\textsuperscript{3}).
+    \item \textbf{Mobile health application}: each household member records a daily allergy severity score (integer scale 1--10) capturing symptoms such as sneezing, nasal congestion, itchy eyes, and skin irritation.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.9\textwidth}{\centering\vspace{4pt}
+    \textbf{Figure 1: Household Sensor Network Schematic}\\[6pt]
+    See accompanying file: \texttt{basementSchematic.png}\\
+    (Source: \url{https://github.com/afodor/claudePremierVisualizations/blob/main/visualizations/basementSchematic.png})\\[4pt]
+    The schematic illustrates the multi-modal monitoring concept for a residential household, showing placement of microbial sampling units, environmental sensors, and the mobile health reporting interface used by household members.
+    \vspace{4pt}}}
+    \caption{Conceptual schematic of the household sensor network for integrated microbiome-environment-health monitoring. Microbial sampling units collect daily environmental specimens for 16S rRNA sequencing. Environmental sensors continuously monitor temperature, humidity, PM\textsubscript{2.5}, CO\textsubscript{2}, and fungal spore concentrations. Household members report daily allergy severity via a mobile application.}
+    \label{fig:schematic}
+\end{figure}
+
+\subsection{Calibration Data: Hill et al. (2026)}
+
+We calibrated the temporal dynamics of our simulated microbial communities to the empirical observations of Hill et al. (2026), who conducted a 61-day daily sampling study of bacterial communities in paired residential bathroom sink P-traps. This study, to our knowledge, represents the highest temporal resolution characterization of residential microbial communities published to date.
+
+Hill et al. sequenced full-length 16S rRNA genes from daily swab samples of two sinks (A and B) sharing identical plumbing infrastructure, environmental conditions, and cleaning regimes but differing in primary user and usage patterns. Their findings revealed two distinct dynamical regimes:
+
+\begin{enumerate}
+    \item \textbf{Stable regime (Sink A)}: Community composition exhibited a coefficient of variation of 4.9\%, significant temporal autocorrelation (Mantel test, $p = 0.001$), and deterministic dynamics in which time explained 49.9\% of community variation. This sink was primarily used for handwashing, toothbrushing, and shaving. The community was enriched in aerobic, skin-associated taxa.
+
+    \item \textbf{Volatile regime (Sink B)}: Community composition showed a CV of 26.5\%, no significant temporal autocorrelation ($p = 0.53$), and stochastic dynamics with minimal temporal predictability. This sink was used for handwashing, toothbrushing, face washing, and mouthwash rinsing. The community was enriched in anaerobes, biofilm-forming bacteria, oral microbiome associates, and preservative-resistant taxa.
+\end{enumerate}
+
+These two regimes define the empirical bounds of the CV range (5--25\%) used in our simulations. The dominant taxa identified---\textit{Pseudomonas}, \textit{Citrobacter}, \textit{Klebsiella}, and \textit{Arcobacter}---are typical residents of residential plumbing biofilms.
+
+\subsection{Simulation Framework}
+
+All simulations were implemented in R (v4.5.1) using the \texttt{glmnet} package for regularized regression. The simulation code is publicly available at \url{https://github.com/afodor/claudeCityWideModels}. The framework comprises four components: microbial community dynamics, environmental covariate generation, allergy response modeling, and statistical inference.
+
+\subsubsection{Microbial Community Dynamics}
+
+We simulate $J = 100$ microbial taxa over $T$ days for $H$ households, each containing $P$ persons. The log-abundance of taxon $j$ in household $h$ on day $t$ follows a first-order autoregressive process:
+
+\begin{equation}
+    x_{hjt} = \mu_j + \delta_{hj} + \phi_j \left( x_{hj,t-1} - \mu_j - \delta_{hj} \right) + \gamma_j \mathbf{e}_{ht}^\top \mathbf{c}_j + \epsilon_{jt}
+    \label{eq:ar1}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $\mu_j$ is the global mean log-abundance of taxon $j$, drawn as $\mu_j \sim \mathcal{N}(-3, 1.5^2)$ to produce a realistic range of rare to abundant taxa;
+    \item $\delta_{hj} \sim \mathcal{N}(0, 0.3^2)$ is a household-specific shift capturing inter-home variability in baseline community composition;
+    \item $\phi_j$ is the AR(1) coefficient controlling temporal persistence, related to the taxon's coefficient of variation;
+    \item $\mathbf{e}_{ht}$ is the vector of standardized environmental covariates for household $h$ on day $t$, and $\mathbf{c}_j$ encodes the coupling strengths (described below);
+    \item $\epsilon_{jt} \sim \mathcal{N}(0, \sigma_j^2)$ is the innovation noise.
+\end{itemize}
+
+\paragraph{Calibrating temporal variability.} For each taxon, we draw a coefficient of variation from a scaled Beta distribution:
+
+\begin{equation}
+    \text{CV}_j = 0.05 + 0.20 \times \text{Beta}(2, 3)
+\end{equation}
+
+\noindent which produces CVs concentrated in the range 0.08--0.18 but spanning 0.05--0.25, matching the empirical range from Hill et al. The Beta(2, 3) shape was chosen to produce a right-skewed distribution, reflecting the expectation that most taxa exhibit moderate stability (closer to Sink A) while a minority display high volatility (closer to Sink B).
+
+The AR(1) coefficient is derived from the CV as $\phi_j = \max(0.05, \min(0.95, 1 - 3 \times \text{CV}_j))$, establishing an inverse relationship between variability and persistence. The innovation standard deviation is then:
+
+\begin{equation}
+    \sigma_j = \text{CV}_j \sqrt{1 - \phi_j^2}
+\end{equation}
+
+\noindent ensuring that the stationary variance of the AR(1) process $\text{Var}(x) = \sigma_j^2 / (1 - \phi_j^2)$ is consistent with the desired CV.
+
+\paragraph{Environmental coupling.} Fifteen of the 100 taxa are designated as environment-responsive: 5 taxa increase with humidity (representing moisture-dependent or fungal-associated organisms), 5 with temperature (thermophilic taxa), and 5 with PM\textsubscript{2.5} (particle-associated taxa). Some of these overlap with the designated causal taxa, creating a realistic confounding structure. The coupling operates additively:
+
+\begin{equation}
+    \gamma_j \mathbf{e}_{ht}^\top \mathbf{c}_j = 0.3 \times z_{\text{env},ht} \times \sigma_j
+\end{equation}
+
+\noindent where $z_{\text{env},ht}$ is the relevant standardized environmental variable, ensuring that environmental coupling is proportional to the taxon's baseline variability.
+
+\subsubsection{Environmental Covariates}
+
+Five environmental time series are generated independently for each household:
+
+\begin{enumerate}
+    \item \textbf{Temperature}: Seasonal sinusoidal trend (amplitude 5\textdegree C, period 365 days) with AR(1) daily noise ($\phi = 0.7$, $\sigma = 1.5$\textdegree C) and a random seasonal phase per household.
+
+    \item \textbf{Relative humidity}: Seasonal trend correlated with temperature ($r \approx 0.5$) plus AR(1) noise ($\phi = 0.6$, $\sigma = 5\%$), clamped to [20\%, 90\%].
+
+    \item \textbf{PM\textsubscript{2.5}}: Baseline AR(1) process ($\phi = 0.5$, $\sigma = 3$ $\mu$g/m$^3$) with sporadic spikes (Bernoulli probability 0.05 per day, exponential magnitude) representing cooking events, wildfires, or construction, with a floor of 2 $\mu$g/m$^3$.
+
+    \item \textbf{CO\textsubscript{2}}: Weekly periodic occupancy signal (amplitude 200 ppm) with AR(1) noise ($\phi = 0.4$, $\sigma = 50$ ppm), clamped above 400 ppm.
+
+    \item \textbf{Fungal spore concentration}: Driven by humidity ($2 \times [\text{humidity} - 50]$) plus seasonal trend and Gaussian noise ($\sigma = 20$ spores/m$^3$), clamped non-negative.
+\end{enumerate}
+
+\subsubsection{Allergy Response Model}
+
+The daily allergy score $y_{ipt}$ for person $p$ in household $h$ on day $t$ is generated as:
+
+\begin{equation}
+    y_{hpt} = \alpha_p + \alpha_h + \sum_{j \in \mathcal{C}} \beta_j x_{hjt} + \gamma_{\text{hum}} z_{\text{hum},ht} + \gamma_{\text{pm}} z_{\text{pm},ht} + \rho \left( y_{hp,t-1} - \alpha_p - \alpha_h \right) + \epsilon_{hpt}
+    \label{eq:allergy}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $\alpha_p \sim \mathcal{N}(3, 0.30^2)$ is the person-specific baseline allergy level;
+    \item $\alpha_h \sim \mathcal{N}(0, 0.20^2)$ is the household random effect;
+    \item $\mathcal{C} = \{1, 2, 3, 4, 5\}$ indexes the causal taxa, with effect sizes $\boldsymbol{\beta} = (0.10, 0.08, 0.06, 0.04, 0.02)$;
+    \item $\gamma_{\text{hum}} = 0.03$ and $\gamma_{\text{pm}} = 0.05$ are direct environmental effects;
+    \item $\rho = 0.3$ is the symptom autocorrelation coefficient, reflecting day-to-day persistence in allergy symptoms;
+    \item $\epsilon_{hpt} \sim \mathcal{N}(0, 0.15^2)$ is residual noise.
+\end{itemize}
+
+Allergy scores are clamped to the [1, 10] interval after generation. The effect sizes $\boldsymbol{\beta}$ represent the change in allergy score per unit change in log-abundance; for context, a taxon with $\beta = 0.10$ produces approximately a 10\% change in allergy score per standard deviation of its log-abundance fluctuation.
+
+\subsubsection{Statistical Inference: Elastic Net Regression}
+
+To recover the causal taxa from the simulated data, we fit an elastic net penalized regression model \citep{zou2005regularization} implemented via the \texttt{glmnet} package in R \citep{friedman2010regularization}.
+
+\paragraph{Person-level demeaning.} Prior to model fitting, all variables (response and predictors) are demeaned within each person to remove individual-level random effects:
+
+\begin{equation}
+    \tilde{y}_{hpt} = y_{hpt} - \bar{y}_{hp\cdot}, \quad \tilde{x}_{hjt} = x_{hjt} - \bar{x}_{hj\cdot}
+\end{equation}
+
+This is equivalent to including person fixed effects and removes all between-person variation, focusing the model on within-person temporal covariation between microbial abundances and allergy symptoms.
+
+\paragraph{Model specification.} The elastic net minimizes:
+
+\begin{equation}
+    \hat{\boldsymbol{\beta}} = \arg\min_{\boldsymbol{\beta}} \left\{ \frac{1}{2n} \sum_{i=1}^n \left( \tilde{y}_i - \tilde{\mathbf{x}}_i^\top \boldsymbol{\beta} \right)^2 + \lambda \left[ \frac{1-\alpha}{2} \|\boldsymbol{\beta}\|_2^2 + \alpha \|\boldsymbol{\beta}\|_1 \right] \right\}
+\end{equation}
+
+\noindent with $\alpha = 0.5$ (equal L$_1$ and L$_2$ penalty), providing a balance between the variable selection properties of LASSO and the grouping effect of ridge regression. The regularization parameter $\lambda$ is selected via 10-fold cross-validation. We report results at $\lambda_{\min}$ (minimizing cross-validated error), which favors sensitivity, and note that $\lambda_{1\text{se}}$ (one standard error rule) would provide more conservative variable selection.
+
+\paragraph{Evaluation metrics.} For each simulation replicate, we compute:
+\begin{itemize}
+    \item \textbf{Sensitivity}: fraction of the 5 causal taxa receiving non-zero coefficients;
+    \item \textbf{Specificity}: fraction of the 95 null taxa receiving zero coefficients;
+    \item \textbf{False discovery rate (FDR)}: fraction of selected taxa that are non-causal;
+    \item \textbf{Coefficient ranking}: rank of each causal taxon by absolute coefficient magnitude among all 100 taxa.
+\end{itemize}
+
+\subsection{Power Analysis Design}
+
+To characterize the study designs required for reliable causal taxa detection, we conducted a factorial power analysis varying three design parameters one at a time while holding others at their default values:
+
+\begin{enumerate}
+    \item \textbf{Number of households}: $H \in \{5, 10, 20, 40\}$ (default 20), with 3 persons per household;
+    \item \textbf{Sampling duration}: $T \in \{30, 60, 90, 180\}$ days (default 90);
+    \item \textbf{Effect size multiplier}: $m \in \{0.5, 1.0, 1.5, 2.0\}$ applied to the base effect vector (default 1.0), yielding causal effects ranging from 1--20\%.
+\end{enumerate}
+
+For each of the 12 parameter settings, we ran $N = 50$ independent simulation replicates (total: 600 fits), each with a freshly generated dataset and model fit. We report means and standard errors across replicates.
+
+\subsection{Univariate Linear Models with BH FDR Correction}
+
+As an alternative to the multivariate elastic net, we evaluated per-taxon univariate linear models with Benjamini-Hochberg (BH) false discovery rate correction \citep{benjamini1995controlling}. For each of the 100 taxa, we fit:
+
+\begin{equation}
+    \tilde{y}_{hpt} = \beta_0 + \beta_1 \tilde{x}_{hjt} + \epsilon_{hpt}
+    \label{eq:univariate}
+\end{equation}
+
+\noindent where $\tilde{y}$ and $\tilde{x}$ are person-demeaned allergy scores and taxon abundances, respectively. We also fit a covariate-adjusted variant:
+
+\begin{equation}
+    \tilde{y}_{hpt} = \beta_0 + \beta_1 \tilde{x}_{hjt} + \sum_{k=1}^{5} \gamma_k \tilde{e}_{hkt} + \epsilon_{hpt}
+    \label{eq:covariate_adjusted}
+\end{equation}
+
+\noindent including all five demeaned environmental covariates. P-values from the taxon coefficient $\beta_1$ across all 100 models were corrected using the BH procedure at a nominal FDR threshold of 5\%. Power analyses varied number of households ($H \in \{5, 10, 20, 40, 80, 160\}$), sampling duration ($T \in \{30, 60, 90, 180, 365\}$ days), and effect size multiplier ($m \in \{0.5, 1.0, 1.5, 2.0\}$), with 50 replicates per condition.
+
+\subsection{Mixed-Effects Models}
+
+To properly account for the hierarchical structure of the data without relying on person-level demeaning, we fit linear mixed-effects models using the \texttt{lme4} package in R \citep{bates2015fitting}. Four model variants were compared for each taxon:
+
+\begin{enumerate}
+    \item \textbf{Simple univariate}: $\tilde{y} \sim \tilde{x}_j$ (demeaned, no covariates, no random effects)
+    \item \textbf{Covariate-adjusted}: $\tilde{y} \sim \tilde{x}_j + \mathbf{e}$ (demeaned, with environmental covariates)
+    \item \textbf{Mixed-effects}: $y \sim x_j + (1|\text{household}/\text{person})$ (random intercepts, no covariates)
+    \item \textbf{Mixed + covariates}: $y \sim x_j + \mathbf{e} + (1|\text{household}/\text{person})$ (full model)
+\end{enumerate}
+
+\noindent For mixed-effects models, p-values were approximated using the normal distribution applied to the $t$-statistic from the model summary, and BH correction was applied across all 100 taxa.
+
+\subsection{Mediation Analysis}
+
+To address the environmental confounding problem, we developed a mediation analysis framework that decomposes each taxon's association with allergy into direct and environment-confounded components. The approach follows the Baron and Kenny framework \citep{baron1986moderator} adapted for our setting:
+
+\paragraph{Total effect ($c$ path).} For each taxon $j$, the total association with allergy is estimated from the simple univariate model (Equation~\ref{eq:univariate}), yielding coefficient $\hat{\beta}_j^{\text{total}}$ and p-value $p_j^{\text{total}}$.
+
+\paragraph{Direct effect ($c'$ path).} The direct association, after controlling for environmental covariates, is estimated from the covariate-adjusted model (Equation~\ref{eq:covariate_adjusted}), yielding $\hat{\beta}_j^{\text{direct}}$ and $p_j^{\text{direct}}$.
+
+\paragraph{Environmental coupling ($a$ path).} The degree to which each taxon is driven by environmental conditions is assessed by regressing taxon abundance on all five environmental covariates:
+
+\begin{equation}
+    \tilde{x}_{hjt} = \alpha_0 + \sum_{k=1}^{5} \alpha_k \tilde{e}_{hkt} + \epsilon_{hjt}
+\end{equation}
+
+\noindent The $R^2$ of this model quantifies the fraction of taxon variability explained by environmental conditions.
+
+\paragraph{Attenuation.} The fraction of total signal attributable to environmental confounding is:
+
+\begin{equation}
+    \text{Attenuation}_j = \frac{\hat{\beta}_j^{\text{total}} - \hat{\beta}_j^{\text{direct}}}{\hat{\beta}_j^{\text{total}}}
+\end{equation}
+
+\paragraph{Classification.} Each taxon is classified into one of three categories based on BH-corrected p-values at the 5\% level:
+
+\begin{itemize}
+    \item \textbf{Direct}: significant total effect AND significant direct effect AND attenuation $< 50\%$. These taxa retain their allergy association after environmental adjustment, suggesting a genuine taxon-allergy pathway.
+    \item \textbf{Confounded}: significant total effect BUT non-significant direct effect OR attenuation $\geq 50\%$. These taxa lose their signal after adjusting for environment, indicating the association was driven by shared environmental exposure.
+    \item \textbf{Null}: non-significant total effect.
+\end{itemize}
+
+Power analyses compared four selection methods across household sizes ($H \in \{5, 10, 20, 40, 80, 160\}$): standard univariate (BH FDR on total effect), covariate-adjusted (BH FDR on direct effect), mediation classification (Direct class only), and strict mediation (Direct class excluding environment-driven taxa with $R^2_{\text{env}} > 0.01$).
+
+\section{Results}
+
+\subsection{Simulated Data Properties}
+
+Figure~\ref{fig:timeseries} shows representative simulated data for a single person in one household over 90 days. Daily allergy scores (Figure~\ref{fig:timeseries}A) fluctuate between 1 and 3.2 with visible day-to-day persistence ($\rho = 0.3$) and occasional spikes corresponding to peaks in causal taxa abundance or environmental exposures.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{sim_allergy_timeseries.png}
+    \caption{Simulated daily allergy score for one individual (Household 1, Person 1) over 90 days. The time series shows realistic day-to-day fluctuations with temporal autocorrelation ($\rho = 0.3$) driven by microbial and environmental exposures.}
+    \label{fig:timeseries}
+\end{figure}
+
+The five causal taxa display the range of temporal dynamics expected from the Hill et al.-calibrated AR(1) model (Figure~\ref{fig:taxa_dynamics}). Taxa with lower CVs (e.g., taxon\_005) show smooth, slowly varying trajectories reminiscent of the deterministic dynamics observed in Sink A (CV = 4.9\%), while taxa with higher CVs (e.g., taxon\_002) exhibit large day-to-day fluctuations analogous to the stochastic regime of Sink B (CV = 26.5\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{sim_causal_taxa_dynamics.png}
+    \caption{Log-abundance trajectories of the five causal taxa over 90 days in one household. Each taxon's temporal dynamics are governed by an AR(1) process with CV drawn from the empirical range of 5--25\% (Hill et al., 2026). More stable taxa (lower CV) show smooth trajectories; more volatile taxa display large day-to-day fluctuations.}
+    \label{fig:taxa_dynamics}
+\end{figure}
+
+Environmental covariates (Figure~\ref{fig:environmental}) exhibit realistic temporal structure: temperature and humidity follow seasonal trends with correlated daily noise, PM\textsubscript{2.5} shows episodic spikes against a low baseline, and fungal concentration tracks humidity with a seasonal modulation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{sim_environmental.png}
+    \caption{Simulated environmental covariates for one household over 90 days. (Top left) Fungal spore concentration, driven by humidity and seasonal trends. (Top right) Relative humidity with seasonal and daily variability. (Bottom left) PM\textsubscript{2.5} with characteristic sporadic spikes. (Bottom right) Indoor temperature with seasonal trend and AR(1) daily noise.}
+    \label{fig:environmental}
+\end{figure}
+
+\subsection{Single-Run Model Recovery}
+
+In the reference scenario (20 households, 3 persons each, 90 days, base effect sizes), the elastic net model at $\lambda_{\min}$ achieved 100\% sensitivity---all five causal taxa received non-zero coefficients. Importantly, the two strongest causal taxa (taxon\_001, $\beta = 0.10$; taxon\_002, $\beta = 0.08$) ranked 1st and 2nd by absolute coefficient magnitude among all 100 taxa (Figure~\ref{fig:coefficients}), indicating clear signal separation for larger effect sizes. The remaining causal taxa ranked 5th (taxon\_003, $\beta = 0.06$), 7th (taxon\_004, $\beta = 0.04$), and 14th (taxon\_005, $\beta = 0.02$).
+
+However, the model also selected 70 of 95 non-causal taxa with non-zero coefficients, yielding a false discovery rate of 93.3\% and specificity of 26.3\%. The non-causal taxa received small coefficients (Figure~\ref{fig:coefficients}), but the lack of sparsity under $\lambda_{\min}$ means that the selected set is heavily contaminated with false positives.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{sim_coefficients.png}
+    \caption{Top 20 elastic net coefficients (by absolute magnitude) from the reference scenario. Red bars indicate truly causal taxa; gray bars indicate non-causal taxa. The two largest-effect causal taxa (taxon\_001 and taxon\_002) clearly separate from the noise floor, while smaller-effect causal taxa (taxon\_003--005) are interspersed with false positives.}
+    \label{fig:coefficients}
+\end{figure}
+
+Figure~\ref{fig:scatter} shows the marginal relationship between each causal taxon's abundance and allergy scores across all persons. Positive slopes are visible for all five taxa, though the relationships are noisy---consistent with the modest effect sizes and the presence of multiple confounding taxa and environmental variables.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{sim_scatter_causal.png}
+    \caption{Marginal scatter plots of allergy score versus log-abundance for each causal taxon, pooling all persons and households. Red lines show linear regression fits. Positive associations are visible despite substantial noise, reflecting the modest individual effect sizes (2--10\%) embedded in a high-dimensional predictor space.}
+    \label{fig:scatter}
+\end{figure}
+
+\subsection{Power Analysis}
+
+\subsubsection{Effect of Number of Households}
+
+Sensitivity increased monotonically with the number of enrolled households (Table~\ref{tab:power_households}, Figure~\ref{fig:power_curves}A). With only 5 households (15 persons total), mean sensitivity was 80.4\% (SD = 21.6\%), indicating that the causal taxa were detected in most but not all replicates. At 10 households, sensitivity rose to 87.6\%; at 20 households, to 93.6\%; and at 40 households, to 97.2\% (SD = 7.0\%). The diminishing returns suggest that 20 households represents an inflection point beyond which additional recruitment yields modest sensitivity gains.
+
+\begin{table}[H]
+\centering
+\caption{Power analysis results: varying number of households (90 days, 3 persons/household, base effect sizes). Mean $\pm$ SD over 50 simulation replicates.}
+\label{tab:power_households}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+Households & Sensitivity & Specificity & FDR & Taxa Selected \\
+\midrule
+5  & 0.804 $\pm$ 0.216 & 0.279 & 0.943 & 72.5 \\
+10 & 0.876 $\pm$ 0.133 & 0.267 & 0.940 & 74.0 \\
+20 & 0.936 $\pm$ 0.103 & 0.291 & 0.933 & 72.0 \\
+40 & 0.972 $\pm$ 0.070 & 0.284 & 0.932 & 72.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Effect of Sampling Duration}
+
+Extending the sampling duration from 30 to 180 days had a pronounced effect on sensitivity (Table~\ref{tab:power_days}, Figure~\ref{fig:power_curves}B). At 30 days, mean sensitivity was 88.0\%, which dipped slightly to 82.8\% at 60 days (reflecting sampling variability), then rose to 93.6\% at 90 days and 98.4\% at 180 days (SD = 5.5\%). Notably, 180 days of sampling also improved specificity from 20.1\% (at 30 days) to 35.2\%, and reduced the number of selected taxa from 80.3 to 66.5---suggesting that longer time series provide more statistical leverage for discriminating true signals from noise.
+
+\begin{table}[H]
+\centering
+\caption{Power analysis results: varying sampling duration (20 households, 3 persons/household, base effect sizes).}
+\label{tab:power_days}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+Days & Sensitivity & Specificity & FDR & Taxa Selected \\
+\midrule
+30  & 0.880 $\pm$ 0.140 & 0.201 & 0.945 & 80.3 \\
+60  & 0.828 $\pm$ 0.167 & 0.255 & 0.944 & 74.9 \\
+90  & 0.936 $\pm$ 0.117 & 0.288 & 0.933 & 72.3 \\
+180 & 0.984 $\pm$ 0.055 & 0.352 & 0.923 & 66.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Effect of Effect Size}
+
+Varying the effect size multiplier from 0.5$\times$ (causal effects of 1--5\%) to 2.0$\times$ (causal effects of 4--20\%) revealed that sensitivity was relatively robust even at reduced effect sizes (Table~\ref{tab:power_effects}, Figure~\ref{fig:power_curves}C). At 0.5$\times$, mean sensitivity was 87.6\%, while at the baseline 1.0$\times$ it was 93.2\%. Interestingly, at higher multipliers (1.5$\times$ and 2.0$\times$), sensitivity decreased slightly to 82.0\% and 84.8\%, respectively. This counterintuitive result likely reflects the interaction between larger causal effects and the elastic net's regularization: when causal taxa have very large effects, the demeaning procedure and shared variance with environment-linked taxa may redistribute signal across correlated predictors.
+
+\begin{table}[H]
+\centering
+\caption{Power analysis results: varying effect size multiplier (20 households, 90 days, 3 persons/household).}
+\label{tab:power_effects}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+Effect Multiplier & Sensitivity & Specificity & FDR & Taxa Selected \\
+\midrule
+0.5$\times$ & 0.876 $\pm$ 0.151 & 0.433 & 0.921 & 58.3 \\
+1.0$\times$ & 0.932 $\pm$ 0.111 & 0.283 & 0.935 & 72.7 \\
+1.5$\times$ & 0.820 $\pm$ 0.191 & 0.252 & 0.945 & 75.2 \\
+2.0$\times$ & 0.848 $\pm$ 0.183 & 0.225 & 0.946 & 77.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{sim_power_curves.png}
+    \caption{Power analysis across three study design dimensions. Red lines show sensitivity (proportion of causal taxa detected); blue lines show 1 $-$ FDR (proportion of selected taxa that are truly causal). Error bars represent 95\% confidence intervals across 50 simulation replicates. The dashed horizontal line marks 80\% power. (A) Sensitivity increases from 80\% to 97\% as households increase from 5 to 40. (B) Longer sampling durations improve both sensitivity and specificity. (C) Sensitivity is relatively stable across effect size multipliers.}
+    \label{fig:power_curves}
+\end{figure}
+
+\subsection{The False Discovery Rate Challenge}
+
+Across all 600 simulation replicates and all parameter configurations, the false discovery rate remained stubbornly high, ranging from 92.1\% to 94.6\% (Tables~\ref{tab:power_households}--\ref{tab:power_effects}). The elastic net at $\lambda_{\min}$ consistently selected 58--80 taxa (out of 100), of which only 4--5 were truly causal. This behavior is well-known for elastic net models in high-dimensional settings: the L$_1$ penalty produces sparsity relative to the full model, but $\lambda_{\min}$ prioritizes prediction accuracy over variable selection parsimony.
+
+This high FDR does \emph{not} indicate that the causal signal is undetectable---rather, it reflects the need for a secondary filtering step. The causal taxa consistently appear among the top-ranked coefficients (ranks 1--14 in the reference scenario), and their coefficients are substantially larger than those of the false positives. Practical approaches to reduce FDR include:
+
+\begin{enumerate}
+    \item \textbf{Using $\lambda_{1\text{se}}$} instead of $\lambda_{\min}$, which applies stricter regularization and selects fewer variables;
+    \item \textbf{Stability selection} \citep{meinshausen2010stability}: running elastic net on many bootstrap resamples and retaining only taxa selected in $>$50\% of runs;
+    \item \textbf{Bayesian sparsity priors}: horseshoe or spike-and-slab priors that produce cleaner posterior inclusion probabilities.
+\end{enumerate}
+
+\subsection{Univariate Models and the Environmental Confounding Problem}
+
+To better understand the source of false positives, we moved from the multivariate elastic net to per-taxon univariate linear models with BH FDR correction, which provide interpretable p-values and effect sizes for each taxon individually.
+
+\subsubsection{Single-Run Comparison of Four Model Variants}
+
+In the reference scenario (20 households, 90 days), the four model variants (simple univariate, covariate-adjusted, mixed-effects, and mixed-effects with covariates) were compared (Figure~\ref{fig:mixed_comparison}). All four models detected the strongest causal taxa, but differed markedly in false positive rates.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{mixed_tp_fp_comparison.png}
+    \caption{Comparison of true positives (red) and false positives (gray) across four modeling approaches at BH FDR $< 0.05$. All models detect causal taxa, but the simple univariate model produces the most false positives. Adding environmental covariates reduces false positives but does not eliminate them.}
+    \label{fig:mixed_comparison}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{mixed_volcano_comparison.png}
+    \caption{Volcano plots for the four modeling approaches. Red points indicate causal taxa; gray points indicate non-causal taxa. Triangles denote taxa significant at BH FDR $< 0.05$. The covariate-adjusted models (right panels) reduce the significance of environment-linked non-causal taxa, but several false positives remain.}
+    \label{fig:volcano_comparison}
+\end{figure}
+
+\subsubsection{Univariate Power Analysis}
+
+The expanded power analysis using univariate models with BH FDR correction (Figure~\ref{fig:univ_power}) revealed a critical asymmetry: increasing sample size improves sensitivity for detecting causal taxa but does \emph{not} reduce the number of false positives (Table~\ref{tab:univ_power_hh}).
+
+\begin{table}[H]
+\centering
+\caption{Univariate power analysis (covariate-adjusted model, BH FDR $< 0.05$): varying number of households. Mean over 50 simulation replicates.}
+\label{tab:univ_power_hh}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+Households & Sensitivity & False Positives & Observed FDR & Total Significant \\
+\midrule
+5   & 0.30 & 10.1 & 0.840 & 11.6 \\
+10  & 0.50 & 11.4 & 0.782 & 13.9 \\
+20  & 0.61 & 12.3 & 0.781 & 15.4 \\
+40  & 0.78 & 12.5 & 0.735 & 16.4 \\
+80  & 0.90 & 14.1 & 0.745 & 18.6 \\
+160 & 0.93 & 15.2 & 0.757 & 19.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+False positives actually \emph{increased} slightly from 10.1 (5 households) to 15.2 (160 households), because greater statistical power detects both true and spurious associations with equal facility. The observed FDR remained between 74\% and 84\%---far exceeding the nominal 5\% BH threshold.
+
+In contrast, increasing sampling duration reduced false positives (Table~\ref{tab:univ_power_days}). At 365 days, false positives dropped to 9.8 (from 18.1 at 30 days) and sensitivity reached 97\%, representing the best overall performance of any univariate configuration tested.
+
+\begin{table}[H]
+\centering
+\caption{Univariate power analysis (covariate-adjusted model, BH FDR $< 0.05$): varying sampling duration. Mean over 50 simulation replicates.}
+\label{tab:univ_power_days}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+Days & Sensitivity & False Positives & Observed FDR & Total Significant \\
+\midrule
+30  & 0.33 & 18.1 & 0.914 & 19.7 \\
+60  & 0.52 & 13.7 & 0.825 & 16.3 \\
+90  & 0.59 & 10.7 & 0.759 & 13.7 \\
+180 & 0.82 & 10.0 & 0.684 & 14.1 \\
+365 & 0.97 & 9.8  & 0.654 & 14.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{power_univ_sensitivity_all.png}
+    \caption{Sensitivity of the covariate-adjusted univariate model (BH FDR $< 0.05$) across three study design dimensions. Sensitivity improves with more households and longer sampling, but the effect size multiplier shows a paradoxical decrease at higher values.}
+    \label{fig:univ_power}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{power_univ_fp_all.png}
+    \caption{False positives from the covariate-adjusted univariate model across study design dimensions. More households does not reduce false positives; only longer sampling duration meaningfully reduces them, suggesting that the false positives arise from temporally structured environmental confounding.}
+    \label{fig:univ_fp}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{power_univ_observed_fdr_all.png}
+    \caption{Observed FDR from the covariate-adjusted univariate model. The BH procedure at a nominal 5\% threshold produces observed FDR of 65--91\%, indicating systematic failure of FDR control. Longer sampling duration partially ameliorates this, but observed FDR remains far above nominal across all configurations.}
+    \label{fig:univ_observed_fdr}
+\end{figure}
+
+\subsubsection{Source of Persistent False Positives}
+
+The persistent false positives arise from the confounding structure of the simulation: environmental parameters (humidity, PM\textsubscript{2.5}) directly affect both allergy scores and the abundances of environment-linked taxa. In our simulation, 10 non-causal taxa are coupled to environmental variables that also drive allergy (humidity-linked: taxa 10, 15, 20; temperature-linked: taxa 11, 16, 25; PM\textsubscript{2.5}-linked: taxa 12, 17, 30, 35). Even after adjusting for environmental covariates in the regression, residual confounding from imperfect covariate adjustment generates significant associations for these taxa. This represents a realistic challenge for built-environment microbiome studies, where the same environmental conditions that shape microbial communities (moisture, temperature, air quality) also directly affect human respiratory health.
+
+\subsection{Mediation Analysis: Separating Direct from Confounded Effects}
+
+To directly address the environmental confounding problem, we applied the mediation analysis framework to decompose each taxon's association with allergy into direct and environment-confounded components.
+
+\subsubsection{Single-Run Mediation Decomposition}
+
+In the reference scenario (20 households, 90 days), the mediation analysis classified 100 taxa into three categories: 13 Direct (3 causal, 10 false positives), 15 Confounded (1 causal, 14 false positives), and 72 Null. The known environment-linked non-causal taxa were predominantly classified as Confounded, with high attenuation values indicating that their allergy associations were driven by shared environmental exposure (Table~\ref{tab:mediation_confounded}).
+
+\begin{table}[H]
+\centering
+\caption{Mediation decomposition of known environment-linked non-causal taxa (single run, 20 households, 90 days). Attenuation quantifies the fraction of total association explained by environmental confounding. High attenuation ($>$50\%) and high environmental $R^2$ confirm these associations are confounded rather than direct.}
+\label{tab:mediation_confounded}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Taxon & Env.\ Link & Coef.\ Total & Coef.\ Direct & Attenuation & Env.\ $R^2$ \\
+\midrule
+taxon\_035 & PM\textsubscript{2.5} & 0.210 & 0.071 & 66\% & 0.094 \\
+taxon\_012 & PM\textsubscript{2.5} & 0.187 & 0.052 & 72\% & 0.090 \\
+taxon\_017 & PM\textsubscript{2.5} & 0.132 & 0.014 & 89\% & 0.084 \\
+taxon\_030 & PM\textsubscript{2.5} & 0.152 & 0.006 & 96\% & 0.077 \\
+taxon\_015 & Humidity  & 0.064 & 0.033 & 48\% & 0.036 \\
+taxon\_010 & Humidity  & 0.052 & 0.002 & 96\% & 0.041 \\
+taxon\_020 & Humidity  & 0.050 & $-$0.001 & 102\% & 0.030 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The PM\textsubscript{2.5}-linked taxa showed the strongest confounding (66--96\% attenuation), consistent with PM\textsubscript{2.5} having the largest direct effect on allergy ($\gamma_{\text{pm}} = 0.05$) in the simulation. Humidity-linked taxa showed moderate to complete attenuation (48--102\%), with attenuation exceeding 100\% for taxon\_020 indicating sign reversal after environmental adjustment.
+
+\subsubsection{Power Analysis: Mediation vs.\ Standard Approaches}
+
+The mediation classification was compared to standard approaches across sample sizes (Figure~\ref{fig:mediation_results}, Table~\ref{tab:mediation_power}).
+
+\begin{table}[H]
+\centering
+\caption{Comparison of four taxon selection methods across sample sizes (90 days, 3 persons/household, base effect sizes). Mean sensitivity, false positives (FP), and observed FDR over 50 simulation replicates.}
+\label{tab:mediation_power}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Households & Method & Sensitivity & FP & Observed FDR \\
+\midrule
+\multirow{3}{*}{20} & Standard (total FDR $< 0.05$) & 0.83 & 20.3 & 0.826 \\
+ & Adjusted (direct FDR $< 0.05$) & 0.61 & 12.3 & 0.781 \\
+ & Mediation (Direct class) & 0.52 & 8.7 & 0.742 \\
+\midrule
+\multirow{3}{*}{80} & Standard (total FDR $< 0.05$) & 0.98 & 24.3 & 0.828 \\
+ & Adjusted (direct FDR $< 0.05$) & 0.90 & 14.1 & 0.745 \\
+ & Mediation (Direct class) & 0.72 & 9.7 & 0.698 \\
+\midrule
+\multirow{3}{*}{160} & Standard (total FDR $< 0.05$) & 1.00 & 24.4 & 0.828 \\
+ & Adjusted (direct FDR $< 0.05$) & 0.93 & 15.2 & 0.757 \\
+ & Mediation (Direct class) & 0.76 & 9.9 & 0.700 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mediation approach reduced false positives from $\sim$20--24 (standard) to $\sim$9--10 across all sample sizes---approximately halving the false positive burden. This improvement was consistent: at every sample size, mediation produced fewer false positives than both the standard and covariate-adjusted approaches. The reduction was achieved primarily by correctly filtering out environment-confounded taxa.
+
+However, this improvement came at a cost to sensitivity. At 160 households, mediation sensitivity was 0.76 compared to 1.00 for the standard approach. Some causal taxa were misclassified as Confounded because they are \emph{both} genuinely causal \emph{and} environment-linked in the simulation (taxa 1--2 are humidity-linked, taxa 3--4 are temperature-linked, taxon 5 is PM\textsubscript{2.5}-linked). This overlap between causal and environment-coupled taxa reflects a realistic biological scenario: the same environmental conditions that select for certain microbial taxa may also be the conditions under which those taxa exert their allergenic effects.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{mediation_sensitivity.png}
+    \caption{Sensitivity comparison across four analytical approaches. The standard approach (red) achieves the highest sensitivity but at the cost of many false positives. The mediation approach (green) sacrifices some sensitivity to reduce false discoveries. Error bars show 95\% confidence intervals across 50 replicates.}
+    \label{fig:mediation_results}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{mediation_false_positives.png}
+    \caption{False positives across analytical approaches. Mediation consistently produces $\sim$9 false positives regardless of sample size, compared to 17--24 for the standard approach. The gap widens at larger sample sizes because the standard approach gains statistical power to detect confounded associations.}
+    \label{fig:mediation_fp}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{mediation_observed_fdr.png}
+    \caption{Observed FDR across approaches. Mediation reduces FDR from $\sim$83\% to $\sim$70\% compared to the standard approach, but all methods substantially exceed the nominal 5\% BH threshold (dashed red line), indicating that environmental confounding---not merely multiple testing---is the primary driver of false discoveries.}
+    \label{fig:mediation_fdr}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{mediation_tradeoff.png}
+    \caption{Sensitivity--FDR tradeoff across methods and sample sizes (numbers indicate households). The ideal operating point is the upper-left corner (high sensitivity, low FDR). The mediation approach shifts curves leftward (lower FDR) at the cost of downward movement (lower sensitivity). No method achieves both high sensitivity and low FDR simultaneously, reflecting the fundamental tension between detection power and false positive control in the presence of environmental confounding.}
+    \label{fig:mediation_tradeoff}
+\end{figure}
+
+\subsubsection{Residual False Positives in the Mediation Approach}
+
+Approximately 9 false positives persisted in the mediation ``Direct'' class across all sample sizes. Examination of these taxa revealed two distinct sources:
+
+\begin{enumerate}
+    \item \textbf{Weak environmental coupling that escapes the attenuation filter}: Some environment-linked taxa (e.g., taxon\_011, temperature-linked) showed low attenuation ($\sim$6\%) because the temperature-allergy pathway is weak in the simulation ($\gamma_{\text{temp}} = 0$; only humidity and PM\textsubscript{2.5} directly affect allergy).
+
+    \item \textbf{Purely spurious associations}: Non-environment-linked taxa (e.g., taxa 036, 039, 046) that achieved significance by chance. These represent the irreducible false positive rate from testing 100 taxa with BH correction---the BH procedure controls the expected proportion of false discoveries, not the absolute number, and with $\sim$85 truly null taxa, even well-calibrated FDR control would permit several false positives.
+\end{enumerate}
+
+\section{Discussion}
+
+\subsection{Key Findings}
+
+Our simulation framework demonstrates that a household sensor network monitoring 100 microbial taxa and 5 environmental parameters, combined with daily allergy self-reports, can reliably detect microbial taxa contributing 2--10\% to allergy severity, but that controlling false discoveries requires explicit treatment of environmental confounding. The key findings are:
+
+\begin{enumerate}
+    \item \textbf{20 households sampled for 90 days provides $>$93\% sensitivity} for detecting causal taxa via elastic net, with the two strongest effects (8--10\%) clearly separating from the noise floor. This represents a feasible study scale for pilot investigations.
+
+    \item \textbf{Sampling duration matters more than cross-sectional breadth.} Extending from 90 to 365 days improved univariate sensitivity from 59\% to 97\% and was the only design parameter that reduced false positives (from 18 to 10). More households improved sensitivity but \emph{increased} false positives, reflecting greater power to detect confounded associations.
+
+    \item \textbf{Environmental confounding is the primary driver of false discoveries.} The persistently high FDR (65--91\%) across all univariate approaches, even with covariate adjustment, indicates that the BH procedure fails when the null hypothesis violations arise from shared environmental drivers rather than independent noise. Environment-linked taxa (humidity, PM\textsubscript{2.5}) consistently appear among false positives.
+
+    \item \textbf{Mediation analysis halves false positives} by correctly identifying environment-confounded taxa, reducing FP from $\sim$20 to $\sim$9. However, it also sacrifices sensitivity (0.76 vs 1.00 at 160 households) because some causal taxa are themselves environment-linked---a realistic scenario in which the same conditions that promote microbial growth also trigger allergic responses.
+
+    \item \textbf{No single method achieves both high sensitivity and low FDR.} The sensitivity--FDR tradeoff (Figure~\ref{fig:mediation_tradeoff}) reveals a fundamental tension: liberal thresholds detect all causal taxa but include many false positives, while conservative approaches (mediation, strict FDR) reduce false positives at the cost of missing environment-linked causal taxa.
+\end{enumerate}
+
+\subsection{Calibration to Empirical Data}
+
+A strength of our framework is the calibration of microbial dynamics to the empirical temporal variability reported by Hill et al. (2026). The CV range of 5--25\% spans the full spectrum from deterministic, slowly varying communities (Sink A) to stochastic, rapidly fluctuating ones (Sink B). This calibration is conservative in the sense that P-trap biofilm communities may be more stable than airborne or surface communities relevant to respiratory exposure; future work should incorporate temporal dynamics from air sampling studies as they become available.
+
+The AR(1) model is a deliberate simplification. Real microbial communities exhibit ecological interactions (competition, facilitation), compositional constraints (abundances sum to a constant), and responses to discrete events (cleaning, cooking, illness). Our framework could be extended to incorporate Lotka-Volterra dynamics, compositional data analysis (e.g., centered log-ratio transformations), and event-driven perturbations.
+
+\subsection{Implications for Study Design}
+
+For investigators planning household microbiome-allergy studies, our results suggest the following design guidelines:
+
+\begin{itemize}
+    \item \textbf{Minimum viable study}: 10 households, 3 persons each, 90 days. This achieves $\sim$88\% sensitivity via elastic net, sufficient for discovery-phase investigations. However, expect $\sim$12 false positives even with covariate adjustment.
+    \item \textbf{Recommended study}: 40+ households, 3 persons each, 180--365 days. Longer sampling is critical for reducing false positives (from 18 at 30 days to 10 at 365 days). The additional temporal data provides better leverage for separating persistent causal signals from transient confounding.
+    \item \textbf{Analytical strategy}: A two-stage approach is recommended. First, use mediation analysis to filter environment-confounded taxa, reducing the candidate set by $\sim$50\%. Then, apply elastic net or mixed-effects models to the filtered set for final variable selection.
+    \item \textbf{Environmental monitoring is essential}, not optional. Our results demonstrate that environmental covariates are not merely nuisance variables but are central to distinguishing causal from confounded microbial associations. Studies that omit environmental monitoring will be unable to resolve this confounding.
+\end{itemize}
+
+\subsection{Limitations}
+
+Several limitations should be noted. First, our simulation assumes that microbial abundances are measured without error; in practice, sequencing depth, PCR biases, and contamination introduce additional noise. Second, we model allergy as a continuous score, whereas real allergy symptoms may be better captured by ordinal or zero-inflated models. Third, the person-level demeaning approach, while removing between-person confounding, also discards potentially informative variation in baseline microbial exposure. Our mixed-effects model comparison (Section 3.5) showed that explicit random intercepts for household and person produce comparable results to demeaning but with proper uncertainty quantification. Fourth, we do not model temporal lags between microbial exposure and symptom onset; distributed lag models \citep{gasparrini2010distributed} may capture biologically important delayed effects. Fifth, all simulated taxa are independent conditional on the environment; in reality, microbial taxa form ecological networks with correlated dynamics that could complicate or aid signal detection. Sixth, the mediation analysis assumes that environmental covariates are measured without error and that the linear adjustment fully captures the confounding pathway; in practice, non-linear environment-taxon relationships or unmeasured confounders could lead to residual confounding even after adjustment. Seventh, our simulation deliberately creates overlap between causal and environment-linked taxa, which penalizes the mediation approach; in settings where causal taxa are not environment-linked, mediation would perform substantially better.
+
+\subsection{Future Directions}
+
+Several extensions of this framework would be valuable:
+
+\begin{enumerate}
+    \item \textbf{Two-stage mediation + elastic net}: Using mediation to first filter environment-confounded taxa, then applying elastic net to the surviving candidates. This could combine the false positive reduction of mediation with the multivariate signal detection of elastic net.
+    \item \textbf{Instrumental variable approaches}: Using environmental variables as instruments to estimate causal effects of taxa on allergy, leveraging the known environment-taxon coupling as a source of exogenous variation.
+    \item \textbf{Distributed lag models}: Incorporating 1--7 day lag structures to capture delayed immune responses to microbial exposures, which could also help separate causal from confounded associations through temporal ordering.
+    \item \textbf{Bayesian hierarchical models}: Using spike-and-slab or horseshoe priors for simultaneous variable selection and effect estimation with natural uncertainty quantification, potentially incorporating informative priors on environment-taxon coupling.
+    \item \textbf{Compositional data analysis}: Replacing log-abundances with centered or isometric log-ratio transforms to respect the compositionality of sequencing data.
+    \item \textbf{Stability selection}: Combining elastic net with bootstrap resampling to provide finite-sample FDR control.
+    \item \textbf{Validation against real data}: As longitudinal household microbiome-health datasets become available, the simulation framework can be validated by comparing simulated and observed effect sizes, temporal dynamics, and model performance.
+\end{enumerate}
+
+\section{Conclusions}
+
+We have developed and validated a simulation framework for evaluating the statistical power and false discovery characteristics of household sensor networks designed to detect microbial determinants of allergic disease. Calibrated to the first daily-resolution longitudinal study of residential microbial dynamics (Hill et al., 2026), our framework generates realistic high-dimensional time series data and evaluates four analytical approaches: elastic net regression, univariate linear models with BH FDR correction, mixed-effects models, and mediation analysis. Our power analysis demonstrates that studies enrolling 20+ households for 90+ days can detect microbial taxa contributing $\geq$4\% to allergy severity with $>$93\% sensitivity, but that controlling false discoveries requires fundamentally different strategies than simply increasing sample size. The central challenge is environmental confounding: taxa whose abundances are driven by the same environmental parameters that affect allergy (humidity, PM\textsubscript{2.5}) generate persistent false positive associations that are not resolved by standard multiple testing corrections. Mediation analysis, which decomposes taxon-allergy associations into direct and environment-confounded components, halves the false positive rate but cannot fully resolve the tension between sensitivity and specificity when causal taxa are themselves environment-linked. These findings underscore that environmental monitoring is not merely complementary but essential for interpreting microbiome-health associations in the built environment, and that analytical strategies must explicitly model the shared environmental drivers of both microbial community composition and health outcomes.
+
+\section*{Data and Code Availability}
+
+All simulation code is available at \url{https://github.com/afodor/claudeCityWideModels}. The simulation framework is implemented in R (v4.5.1) and requires the \texttt{MASS}, \texttt{glmnet}, \texttt{lme4}, and \texttt{ggplot2} packages.
+
+\section*{Acknowledgments}
+
+The authors thank Megan S. Hill and colleagues for making the temporal dynamics data from their residential sink P-trap study publicly available, which provided essential calibration parameters for this simulation framework.
+
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{99}
+
+\bibitem[Adams et~al.(2015)]{adams2015microbiota}
+Adams, R.~I., Bateman, A.~C., Bik, H.~M., and Meadow, J.~F. (2015).
+\newblock Microbiota of the indoor environment: a meta-analysis.
+\newblock \emph{Microbiome}, 3:49.
+
+\bibitem[Baron and Kenny(1986)]{baron1986moderator}
+Baron, R.~M. and Kenny, D.~A. (1986).
+\newblock The moderator--mediator variable distinction in social psychological research: Conceptual, strategic, and statistical considerations.
+\newblock \emph{Journal of Personality and Social Psychology}, 51(6):1173--1182.
+
+\bibitem[Bates et~al.(2015)]{bates2015fitting}
+Bates, D., M\"achler, M., Bolker, B., and Walker, S. (2015).
+\newblock Fitting linear mixed-effects models using lme4.
+\newblock \emph{Journal of Statistical Software}, 67(1):1--48.
+
+\bibitem[Benjamini and Hochberg(1995)]{benjamini1995controlling}
+Benjamini, Y. and Hochberg, Y. (1995).
+\newblock Controlling the false discovery rate: a practical and powerful approach to multiple testing.
+\newblock \emph{Journal of the Royal Statistical Society: Series B}, 57(1):289--300.
+
+\bibitem[Ege et~al.(2011)]{ege2011exposure}
+Ege, M.~J., Mayer, M., Normand, A.-C., et~al. (2011).
+\newblock Exposure to environmental microorganisms and childhood asthma.
+\newblock \emph{New England Journal of Medicine}, 364(8):701--709.
+
+\bibitem[Friedman et~al.(2010)]{friedman2010regularization}
+Friedman, J., Hastie, T., and Tibshirani, R. (2010).
+\newblock Regularization paths for generalized linear models via coordinate descent.
+\newblock \emph{Journal of Statistical Software}, 33(1):1--22.
+
+\bibitem[Gasparrini et~al.(2010)]{gasparrini2010distributed}
+Gasparrini, A., Armstrong, B., and Kenward, M.~G. (2010).
+\newblock Distributed lag non-linear models.
+\newblock \emph{Statistics in Medicine}, 29(21):2224--2234.
+
+\bibitem[Hill et~al.(2026)]{hill2026temporal}
+Hill, M.~S., et~al. (2026).
+\newblock Temporal stability and niche partitioning of bacterial communities in paired residential sink P-traps.
+\newblock \emph{bioRxiv}, doi:10.64898/2026.02.17.706431v1.
+
+\bibitem[Meinshausen and B\"uhlmann(2010)]{meinshausen2010stability}
+Meinshausen, N. and B\"uhlmann, P. (2010).
+\newblock Stability selection.
+\newblock \emph{Journal of the Royal Statistical Society: Series B}, 72(4):417--473.
+
+\bibitem[Mendell et~al.(2011)]{mendell2011respiratory}
+Mendell, M.~J., Mirer, A.~G., Cheung, K., Tong, M., and Douwes, J. (2011).
+\newblock Respiratory and allergic health effects of dampness, mold, and dampness-related agents: a review of the epidemiologic evidence.
+\newblock \emph{Environmental Health Perspectives}, 119(6):748--756.
+
+\bibitem[Zou and Hastie(2005)]{zou2005regularization}
+Zou, H. and Hastie, T. (2005).
+\newblock Regularization and variable selection via the elastic net.
+\newblock \emph{Journal of the Royal Statistical Society: Series B}, 67(2):301--320.
+
+\end{thebibliography}
+
+\end{document}

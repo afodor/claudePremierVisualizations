@@ -73,18 +73,11 @@
 <div id="labelHome" class="scene-label">Use Case 2: Home<span class="label-accent" style="background:#e8c840"></span></div>
 <div id="labelHub" class="scene-label">Central AI Hub<span class="label-accent" style="background:#00ddff"></span></div>
 
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
-  }
-}
-</script>
+<script src="../lib/three-bundle.js"></script>
 
-<script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+<script>
+const THREE = window.THREE;
+const OrbitControls = window.OrbitControls;
 
 // ==================== SCENE SETUP ====================
 const scene = new THREE.Scene();

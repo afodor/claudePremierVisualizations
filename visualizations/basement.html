@@ -39,18 +39,12 @@
   <p>Drag to orbit &bull; Scroll to zoom &bull; Hover over objects to see labels</p>
 </div>
 
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
-  }
-}
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+<script src="../lib/three-bundle.js"></script>
+<script>
+const THREE = window.THREE;
+const OrbitControls = window.OrbitControls;
+const CSS2DRenderer = window.CSS2DRenderer;
+const CSS2DObject = window.CSS2DObject;
 
 // ==================== SCENE ====================
 const scene = new THREE.Scene();

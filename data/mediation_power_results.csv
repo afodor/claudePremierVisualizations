@@ -1,0 +1,1201 @@
+"households","sim","method","sensitivity","false_positives","n_significant","observed_fdr"
+5,1,"Standard (total FDR<0.05)",0.8,30,34,0.882352941176471
+5,1,"Adjusted (direct FDR<0.05)",0.2,17,18,0.944444444444444
+5,1,"Mediation (Direct class)",0.2,14,15,0.933333333333333
+5,1,"Strict mediation",0,3,3,1
+5,2,"Standard (total FDR<0.05)",0.6,12,15,0.8
+5,2,"Adjusted (direct FDR<0.05)",0.8,5,9,0.555555555555556
+5,2,"Mediation (Direct class)",0.6,2,5,0.4
+5,2,"Strict mediation",0,0,0,0
+5,3,"Standard (total FDR<0.05)",0.4,16,18,0.888888888888889
+5,3,"Adjusted (direct FDR<0.05)",0,1,1,1
+5,3,"Mediation (Direct class)",0,1,1,1
+5,3,"Strict mediation",0,0,0,0
+5,4,"Standard (total FDR<0.05)",0.6,19,22,0.863636363636364
+5,4,"Adjusted (direct FDR<0.05)",0.2,8,9,0.888888888888889
+5,4,"Mediation (Direct class)",0.2,7,8,0.875
+5,4,"Strict mediation",0,2,2,1
+5,5,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+5,5,"Adjusted (direct FDR<0.05)",1,17,22,0.772727272727273
+5,5,"Mediation (Direct class)",0.8,15,19,0.789473684210526
+5,5,"Strict mediation",0.2,2,3,0.666666666666667
+5,6,"Standard (total FDR<0.05)",0.6,26,29,0.896551724137931
+5,6,"Adjusted (direct FDR<0.05)",0.4,16,18,0.888888888888889
+5,6,"Mediation (Direct class)",0.4,14,16,0.875
+5,6,"Strict mediation",0,2,2,1
+5,7,"Standard (total FDR<0.05)",0.2,15,16,0.9375
+5,7,"Adjusted (direct FDR<0.05)",0,10,10,1
+5,7,"Mediation (Direct class)",0,8,8,1
+5,7,"Strict mediation",0,1,1,1
+5,8,"Standard (total FDR<0.05)",0.4,18,20,0.9
+5,8,"Adjusted (direct FDR<0.05)",0.2,6,7,0.857142857142857
+5,8,"Mediation (Direct class)",0.2,4,5,0.8
+5,8,"Strict mediation",0,0,0,0
+5,9,"Standard (total FDR<0.05)",0.8,22,26,0.846153846153846
+5,9,"Adjusted (direct FDR<0.05)",0.6,17,20,0.85
+5,9,"Mediation (Direct class)",0.6,15,18,0.833333333333333
+5,9,"Strict mediation",0,3,3,1
+5,10,"Standard (total FDR<0.05)",0.2,18,19,0.947368421052632
+5,10,"Adjusted (direct FDR<0.05)",0.2,17,18,0.944444444444444
+5,10,"Mediation (Direct class)",0.2,15,16,0.9375
+5,10,"Strict mediation",0,3,3,1
+5,11,"Standard (total FDR<0.05)",0.6,17,20,0.85
+5,11,"Adjusted (direct FDR<0.05)",0.2,7,8,0.875
+5,11,"Mediation (Direct class)",0.2,7,8,0.875
+5,11,"Strict mediation",0,1,1,1
+5,12,"Standard (total FDR<0.05)",0.8,22,26,0.846153846153846
+5,12,"Adjusted (direct FDR<0.05)",0.6,10,13,0.769230769230769
+5,12,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+5,12,"Strict mediation",0,1,1,1
+5,13,"Standard (total FDR<0.05)",1,17,22,0.772727272727273
+5,13,"Adjusted (direct FDR<0.05)",0.8,10,14,0.714285714285714
+5,13,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+5,13,"Strict mediation",0,4,4,1
+5,14,"Standard (total FDR<0.05)",0.4,19,21,0.904761904761905
+5,14,"Adjusted (direct FDR<0.05)",0.2,16,17,0.941176470588235
+5,14,"Mediation (Direct class)",0.2,11,12,0.916666666666667
+5,14,"Strict mediation",0,4,4,1
+5,15,"Standard (total FDR<0.05)",0.4,23,25,0.92
+5,15,"Adjusted (direct FDR<0.05)",0.2,17,18,0.944444444444444
+5,15,"Mediation (Direct class)",0,13,13,1
+5,15,"Strict mediation",0,3,3,1
+5,16,"Standard (total FDR<0.05)",0.2,11,12,0.916666666666667
+5,16,"Adjusted (direct FDR<0.05)",0,10,10,1
+5,16,"Mediation (Direct class)",0,6,6,1
+5,16,"Strict mediation",0,1,1,1
+5,17,"Standard (total FDR<0.05)",0.4,15,17,0.882352941176471
+5,17,"Adjusted (direct FDR<0.05)",0.2,13,14,0.928571428571429
+5,17,"Mediation (Direct class)",0.2,8,9,0.888888888888889
+5,17,"Strict mediation",0,0,0,0
+5,18,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+5,18,"Adjusted (direct FDR<0.05)",0,9,9,1
+5,18,"Mediation (Direct class)",0,8,8,1
+5,18,"Strict mediation",0,3,3,1
+5,19,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+5,19,"Adjusted (direct FDR<0.05)",0.4,8,10,0.8
+5,19,"Mediation (Direct class)",0.4,8,10,0.8
+5,19,"Strict mediation",0,2,2,1
+5,20,"Standard (total FDR<0.05)",0,8,8,1
+5,20,"Adjusted (direct FDR<0.05)",0,11,11,1
+5,20,"Mediation (Direct class)",0,7,7,1
+5,20,"Strict mediation",0,3,3,1
+5,21,"Standard (total FDR<0.05)",0.6,8,11,0.727272727272727
+5,21,"Adjusted (direct FDR<0.05)",0.6,5,8,0.625
+5,21,"Mediation (Direct class)",0.6,4,7,0.571428571428571
+5,21,"Strict mediation",0,0,0,0
+5,22,"Standard (total FDR<0.05)",0.4,21,23,0.91304347826087
+5,22,"Adjusted (direct FDR<0.05)",0.4,10,12,0.833333333333333
+5,22,"Mediation (Direct class)",0,9,9,1
+5,22,"Strict mediation",0,1,1,1
+5,23,"Standard (total FDR<0.05)",0.4,17,19,0.894736842105263
+5,23,"Adjusted (direct FDR<0.05)",0.6,19,22,0.863636363636364
+5,23,"Mediation (Direct class)",0.4,17,19,0.894736842105263
+5,23,"Strict mediation",0,3,3,1
+5,24,"Standard (total FDR<0.05)",0.4,15,17,0.882352941176471
+5,24,"Adjusted (direct FDR<0.05)",0.4,5,7,0.714285714285714
+5,24,"Mediation (Direct class)",0.4,4,6,0.666666666666667
+5,24,"Strict mediation",0,1,1,1
+5,25,"Standard (total FDR<0.05)",0.6,11,14,0.785714285714286
+5,25,"Adjusted (direct FDR<0.05)",0.4,7,9,0.777777777777778
+5,25,"Mediation (Direct class)",0.4,4,6,0.666666666666667
+5,25,"Strict mediation",0.2,1,2,0.5
+5,26,"Standard (total FDR<0.05)",0.8,16,20,0.8
+5,26,"Adjusted (direct FDR<0.05)",0.2,5,6,0.833333333333333
+5,26,"Mediation (Direct class)",0.2,5,6,0.833333333333333
+5,26,"Strict mediation",0,1,1,1
+5,27,"Standard (total FDR<0.05)",0.4,21,23,0.91304347826087
+5,27,"Adjusted (direct FDR<0.05)",0.2,8,9,0.888888888888889
+5,27,"Mediation (Direct class)",0.2,8,9,0.888888888888889
+5,27,"Strict mediation",0,3,3,1
+5,28,"Standard (total FDR<0.05)",0.2,15,16,0.9375
+5,28,"Adjusted (direct FDR<0.05)",0,10,10,1
+5,28,"Mediation (Direct class)",0,7,7,1
+5,28,"Strict mediation",0,2,2,1
+5,29,"Standard (total FDR<0.05)",0.4,17,19,0.894736842105263
+5,29,"Adjusted (direct FDR<0.05)",0.4,11,13,0.846153846153846
+5,29,"Mediation (Direct class)",0.2,7,8,0.875
+5,29,"Strict mediation",0,2,2,1
+5,30,"Standard (total FDR<0.05)",0.4,10,12,0.833333333333333
+5,30,"Adjusted (direct FDR<0.05)",0.2,3,4,0.75
+5,30,"Mediation (Direct class)",0.2,2,3,0.666666666666667
+5,30,"Strict mediation",0,1,1,1
+5,31,"Standard (total FDR<0.05)",0.8,15,19,0.789473684210526
+5,31,"Adjusted (direct FDR<0.05)",0.2,1,2,0.5
+5,31,"Mediation (Direct class)",0.2,1,2,0.5
+5,31,"Strict mediation",0.2,0,1,0
+5,32,"Standard (total FDR<0.05)",0.8,18,22,0.818181818181818
+5,32,"Adjusted (direct FDR<0.05)",0.4,12,14,0.857142857142857
+5,32,"Mediation (Direct class)",0.4,8,10,0.8
+5,32,"Strict mediation",0,4,4,1
+5,33,"Standard (total FDR<0.05)",0.8,15,19,0.789473684210526
+5,33,"Adjusted (direct FDR<0.05)",0.4,1,3,0.333333333333333
+5,33,"Mediation (Direct class)",0.4,1,3,0.333333333333333
+5,33,"Strict mediation",0,0,0,0
+5,34,"Standard (total FDR<0.05)",0.6,20,23,0.869565217391304
+5,34,"Adjusted (direct FDR<0.05)",0.2,16,17,0.941176470588235
+5,34,"Mediation (Direct class)",0.2,10,11,0.909090909090909
+5,34,"Strict mediation",0,4,4,1
+5,35,"Standard (total FDR<0.05)",0.4,16,18,0.888888888888889
+5,35,"Adjusted (direct FDR<0.05)",0,11,11,1
+5,35,"Mediation (Direct class)",0,9,9,1
+5,35,"Strict mediation",0,0,0,0
+5,36,"Standard (total FDR<0.05)",0.6,9,12,0.75
+5,36,"Adjusted (direct FDR<0.05)",0.4,17,19,0.894736842105263
+5,36,"Mediation (Direct class)",0.4,7,9,0.777777777777778
+5,36,"Strict mediation",0,1,1,1
+5,37,"Standard (total FDR<0.05)",0.8,17,21,0.80952380952381
+5,37,"Adjusted (direct FDR<0.05)",0.2,14,15,0.933333333333333
+5,37,"Mediation (Direct class)",0.2,11,12,0.916666666666667
+5,37,"Strict mediation",0,2,2,1
+5,38,"Standard (total FDR<0.05)",0.4,15,17,0.882352941176471
+5,38,"Adjusted (direct FDR<0.05)",0.4,7,9,0.777777777777778
+5,38,"Mediation (Direct class)",0.4,5,7,0.714285714285714
+5,38,"Strict mediation",0,1,1,1
+5,39,"Standard (total FDR<0.05)",0.4,13,15,0.866666666666667
+5,39,"Adjusted (direct FDR<0.05)",0.2,8,9,0.888888888888889
+5,39,"Mediation (Direct class)",0.2,6,7,0.857142857142857
+5,39,"Strict mediation",0,1,1,1
+5,40,"Standard (total FDR<0.05)",0.6,21,24,0.875
+5,40,"Adjusted (direct FDR<0.05)",0.4,21,23,0.91304347826087
+5,40,"Mediation (Direct class)",0.4,14,16,0.875
+5,40,"Strict mediation",0,3,3,1
+5,41,"Standard (total FDR<0.05)",0.4,16,18,0.888888888888889
+5,41,"Adjusted (direct FDR<0.05)",0.2,9,10,0.9
+5,41,"Mediation (Direct class)",0.2,4,5,0.8
+5,41,"Strict mediation",0,0,0,0
+5,42,"Standard (total FDR<0.05)",0.2,12,13,0.923076923076923
+5,42,"Adjusted (direct FDR<0.05)",0.2,5,6,0.833333333333333
+5,42,"Mediation (Direct class)",0.2,4,5,0.8
+5,42,"Strict mediation",0,2,2,1
+5,43,"Standard (total FDR<0.05)",0.4,17,19,0.894736842105263
+5,43,"Adjusted (direct FDR<0.05)",0,10,10,1
+5,43,"Mediation (Direct class)",0,9,9,1
+5,43,"Strict mediation",0,3,3,1
+5,44,"Standard (total FDR<0.05)",0.6,24,27,0.888888888888889
+5,44,"Adjusted (direct FDR<0.05)",0.2,10,11,0.909090909090909
+5,44,"Mediation (Direct class)",0.2,7,8,0.875
+5,44,"Strict mediation",0,1,1,1
+5,45,"Standard (total FDR<0.05)",0.6,13,16,0.8125
+5,45,"Adjusted (direct FDR<0.05)",0.4,5,7,0.714285714285714
+5,45,"Mediation (Direct class)",0.4,4,6,0.666666666666667
+5,45,"Strict mediation",0,0,0,0
+5,46,"Standard (total FDR<0.05)",0.4,17,19,0.894736842105263
+5,46,"Adjusted (direct FDR<0.05)",0.2,17,18,0.944444444444444
+5,46,"Mediation (Direct class)",0.2,12,13,0.923076923076923
+5,46,"Strict mediation",0,6,6,1
+5,47,"Standard (total FDR<0.05)",0.4,7,9,0.777777777777778
+5,47,"Adjusted (direct FDR<0.05)",0.4,2,4,0.5
+5,47,"Mediation (Direct class)",0.2,2,3,0.666666666666667
+5,47,"Strict mediation",0,1,1,1
+5,48,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+5,48,"Adjusted (direct FDR<0.05)",0.4,4,6,0.666666666666667
+5,48,"Mediation (Direct class)",0.4,4,6,0.666666666666667
+5,48,"Strict mediation",0,3,3,1
+5,49,"Standard (total FDR<0.05)",0.6,18,21,0.857142857142857
+5,49,"Adjusted (direct FDR<0.05)",0.4,17,19,0.894736842105263
+5,49,"Mediation (Direct class)",0.2,10,11,0.909090909090909
+5,49,"Strict mediation",0,2,2,1
+5,50,"Standard (total FDR<0.05)",0.6,22,25,0.88
+5,50,"Adjusted (direct FDR<0.05)",0.4,8,10,0.8
+5,50,"Mediation (Direct class)",0.4,8,10,0.8
+5,50,"Strict mediation",0,2,2,1
+10,1,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+10,1,"Adjusted (direct FDR<0.05)",0.8,12,16,0.75
+10,1,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+10,1,"Strict mediation",0,5,5,1
+10,2,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+10,2,"Adjusted (direct FDR<0.05)",0.6,11,14,0.785714285714286
+10,2,"Mediation (Direct class)",0.4,5,7,0.714285714285714
+10,2,"Strict mediation",0,3,3,1
+10,3,"Standard (total FDR<0.05)",0.6,13,16,0.8125
+10,3,"Adjusted (direct FDR<0.05)",0.4,2,4,0.5
+10,3,"Mediation (Direct class)",0.4,1,3,0.333333333333333
+10,3,"Strict mediation",0,1,1,1
+10,4,"Standard (total FDR<0.05)",1,20,25,0.8
+10,4,"Adjusted (direct FDR<0.05)",0.4,2,4,0.5
+10,4,"Mediation (Direct class)",0.4,2,4,0.5
+10,4,"Strict mediation",0,1,1,1
+10,5,"Standard (total FDR<0.05)",1,15,20,0.75
+10,5,"Adjusted (direct FDR<0.05)",0.8,12,16,0.75
+10,5,"Mediation (Direct class)",0.8,8,12,0.666666666666667
+10,5,"Strict mediation",0,3,3,1
+10,6,"Standard (total FDR<0.05)",0.4,25,27,0.925925925925926
+10,6,"Adjusted (direct FDR<0.05)",0.2,14,15,0.933333333333333
+10,6,"Mediation (Direct class)",0.2,13,14,0.928571428571429
+10,6,"Strict mediation",0,6,6,1
+10,7,"Standard (total FDR<0.05)",1,12,17,0.705882352941177
+10,7,"Adjusted (direct FDR<0.05)",0.6,5,8,0.625
+10,7,"Mediation (Direct class)",0.6,5,8,0.625
+10,7,"Strict mediation",0,4,4,1
+10,8,"Standard (total FDR<0.05)",1,20,25,0.8
+10,8,"Adjusted (direct FDR<0.05)",0.8,6,10,0.6
+10,8,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+10,8,"Strict mediation",0,2,2,1
+10,9,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+10,9,"Adjusted (direct FDR<0.05)",0.8,7,11,0.636363636363636
+10,9,"Mediation (Direct class)",0.8,7,11,0.636363636363636
+10,9,"Strict mediation",0,4,4,1
+10,10,"Standard (total FDR<0.05)",0.6,35,38,0.921052631578947
+10,10,"Adjusted (direct FDR<0.05)",0.4,12,14,0.857142857142857
+10,10,"Mediation (Direct class)",0.4,10,12,0.833333333333333
+10,10,"Strict mediation",0,8,8,1
+10,11,"Standard (total FDR<0.05)",0.8,15,19,0.789473684210526
+10,11,"Adjusted (direct FDR<0.05)",0.6,13,16,0.8125
+10,11,"Mediation (Direct class)",0.6,9,12,0.75
+10,11,"Strict mediation",0,2,2,1
+10,12,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+10,12,"Adjusted (direct FDR<0.05)",0.4,18,20,0.9
+10,12,"Mediation (Direct class)",0.4,11,13,0.846153846153846
+10,12,"Strict mediation",0,6,6,1
+10,13,"Standard (total FDR<0.05)",0.8,21,25,0.84
+10,13,"Adjusted (direct FDR<0.05)",0.8,18,22,0.818181818181818
+10,13,"Mediation (Direct class)",0.4,11,13,0.846153846153846
+10,13,"Strict mediation",0,6,6,1
+10,14,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+10,14,"Adjusted (direct FDR<0.05)",1,24,29,0.827586206896552
+10,14,"Mediation (Direct class)",0.8,16,20,0.8
+10,14,"Strict mediation",0,8,8,1
+10,15,"Standard (total FDR<0.05)",1,12,17,0.705882352941177
+10,15,"Adjusted (direct FDR<0.05)",0.6,6,9,0.666666666666667
+10,15,"Mediation (Direct class)",0.6,4,7,0.571428571428571
+10,15,"Strict mediation",0,2,2,1
+10,16,"Standard (total FDR<0.05)",0.8,16,20,0.8
+10,16,"Adjusted (direct FDR<0.05)",0.6,11,14,0.785714285714286
+10,16,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+10,16,"Strict mediation",0,2,2,1
+10,17,"Standard (total FDR<0.05)",0.8,15,19,0.789473684210526
+10,17,"Adjusted (direct FDR<0.05)",0.6,10,13,0.769230769230769
+10,17,"Mediation (Direct class)",0.4,8,10,0.8
+10,17,"Strict mediation",0,4,4,1
+10,18,"Standard (total FDR<0.05)",0.8,18,22,0.818181818181818
+10,18,"Adjusted (direct FDR<0.05)",0.8,7,11,0.636363636363636
+10,18,"Mediation (Direct class)",0.6,5,8,0.625
+10,18,"Strict mediation",0,1,1,1
+10,19,"Standard (total FDR<0.05)",0.8,21,25,0.84
+10,19,"Adjusted (direct FDR<0.05)",0.6,11,14,0.785714285714286
+10,19,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+10,19,"Strict mediation",0,5,5,1
+10,20,"Standard (total FDR<0.05)",0.8,19,23,0.826086956521739
+10,20,"Adjusted (direct FDR<0.05)",0.4,9,11,0.818181818181818
+10,20,"Mediation (Direct class)",0.4,7,9,0.777777777777778
+10,20,"Strict mediation",0,4,4,1
+10,21,"Standard (total FDR<0.05)",0.8,17,21,0.80952380952381
+10,21,"Adjusted (direct FDR<0.05)",0.8,9,13,0.692307692307692
+10,21,"Mediation (Direct class)",0.6,7,10,0.7
+10,21,"Strict mediation",0,3,3,1
+10,22,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+10,22,"Adjusted (direct FDR<0.05)",0.8,11,15,0.733333333333333
+10,22,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+10,22,"Strict mediation",0,7,7,1
+10,23,"Standard (total FDR<0.05)",0.4,22,24,0.916666666666667
+10,23,"Adjusted (direct FDR<0.05)",0.4,10,12,0.833333333333333
+10,23,"Mediation (Direct class)",0.2,10,11,0.909090909090909
+10,23,"Strict mediation",0,5,5,1
+10,24,"Standard (total FDR<0.05)",0.4,18,20,0.9
+10,24,"Adjusted (direct FDR<0.05)",0.2,10,11,0.909090909090909
+10,24,"Mediation (Direct class)",0.2,9,10,0.9
+10,24,"Strict mediation",0,3,3,1
+10,25,"Standard (total FDR<0.05)",0.6,26,29,0.896551724137931
+10,25,"Adjusted (direct FDR<0.05)",0,24,24,1
+10,25,"Mediation (Direct class)",0,22,22,1
+10,25,"Strict mediation",0,12,12,1
+10,26,"Standard (total FDR<0.05)",0.6,26,29,0.896551724137931
+10,26,"Adjusted (direct FDR<0.05)",0.2,24,25,0.96
+10,26,"Mediation (Direct class)",0.2,20,21,0.952380952380952
+10,26,"Strict mediation",0,11,11,1
+10,27,"Standard (total FDR<0.05)",0.6,20,23,0.869565217391304
+10,27,"Adjusted (direct FDR<0.05)",0.4,16,18,0.888888888888889
+10,27,"Mediation (Direct class)",0.4,12,14,0.857142857142857
+10,27,"Strict mediation",0,7,7,1
+10,28,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+10,28,"Adjusted (direct FDR<0.05)",0.8,15,19,0.789473684210526
+10,28,"Mediation (Direct class)",0.6,11,14,0.785714285714286
+10,28,"Strict mediation",0,3,3,1
+10,29,"Standard (total FDR<0.05)",0.8,24,28,0.857142857142857
+10,29,"Adjusted (direct FDR<0.05)",0.4,20,22,0.909090909090909
+10,29,"Mediation (Direct class)",0.4,14,16,0.875
+10,29,"Strict mediation",0,10,10,1
+10,30,"Standard (total FDR<0.05)",0.6,23,26,0.884615384615385
+10,30,"Adjusted (direct FDR<0.05)",0.4,19,21,0.904761904761905
+10,30,"Mediation (Direct class)",0.4,11,13,0.846153846153846
+10,30,"Strict mediation",0,5,5,1
+10,31,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+10,31,"Adjusted (direct FDR<0.05)",0.8,5,9,0.555555555555556
+10,31,"Mediation (Direct class)",0.6,5,8,0.625
+10,31,"Strict mediation",0,2,2,1
+10,32,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+10,32,"Adjusted (direct FDR<0.05)",0.4,13,15,0.866666666666667
+10,32,"Mediation (Direct class)",0.4,11,13,0.846153846153846
+10,32,"Strict mediation",0,5,5,1
+10,33,"Standard (total FDR<0.05)",0.6,14,17,0.823529411764706
+10,33,"Adjusted (direct FDR<0.05)",0.2,10,11,0.909090909090909
+10,33,"Mediation (Direct class)",0.2,8,9,0.888888888888889
+10,33,"Strict mediation",0,5,5,1
+10,34,"Standard (total FDR<0.05)",0.4,15,17,0.882352941176471
+10,34,"Adjusted (direct FDR<0.05)",0.2,9,10,0.9
+10,34,"Mediation (Direct class)",0.2,6,7,0.857142857142857
+10,34,"Strict mediation",0,2,2,1
+10,35,"Standard (total FDR<0.05)",0.8,15,19,0.789473684210526
+10,35,"Adjusted (direct FDR<0.05)",0.4,2,4,0.5
+10,35,"Mediation (Direct class)",0.4,2,4,0.5
+10,35,"Strict mediation",0,1,1,1
+10,36,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+10,36,"Adjusted (direct FDR<0.05)",0.2,5,6,0.833333333333333
+10,36,"Mediation (Direct class)",0.2,5,6,0.833333333333333
+10,36,"Strict mediation",0,2,2,1
+10,37,"Standard (total FDR<0.05)",0.6,8,11,0.727272727272727
+10,37,"Adjusted (direct FDR<0.05)",0.2,1,2,0.5
+10,37,"Mediation (Direct class)",0.2,1,2,0.5
+10,37,"Strict mediation",0,1,1,1
+10,38,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+10,38,"Adjusted (direct FDR<0.05)",0.4,6,8,0.75
+10,38,"Mediation (Direct class)",0.4,4,6,0.666666666666667
+10,38,"Strict mediation",0,1,1,1
+10,39,"Standard (total FDR<0.05)",0.8,22,26,0.846153846153846
+10,39,"Adjusted (direct FDR<0.05)",0.6,16,19,0.842105263157895
+10,39,"Mediation (Direct class)",0.4,12,14,0.857142857142857
+10,39,"Strict mediation",0,8,8,1
+10,40,"Standard (total FDR<0.05)",0.8,20,24,0.833333333333333
+10,40,"Adjusted (direct FDR<0.05)",0.4,9,11,0.818181818181818
+10,40,"Mediation (Direct class)",0.4,6,8,0.75
+10,40,"Strict mediation",0,4,4,1
+10,41,"Standard (total FDR<0.05)",0.4,19,21,0.904761904761905
+10,41,"Adjusted (direct FDR<0.05)",0.4,6,8,0.75
+10,41,"Mediation (Direct class)",0.2,5,6,0.833333333333333
+10,41,"Strict mediation",0,3,3,1
+10,42,"Standard (total FDR<0.05)",0.8,17,21,0.80952380952381
+10,42,"Adjusted (direct FDR<0.05)",0.6,7,10,0.7
+10,42,"Mediation (Direct class)",0.4,6,8,0.75
+10,42,"Strict mediation",0,4,4,1
+10,43,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+10,43,"Adjusted (direct FDR<0.05)",0.4,9,11,0.818181818181818
+10,43,"Mediation (Direct class)",0.4,8,10,0.8
+10,43,"Strict mediation",0,4,4,1
+10,44,"Standard (total FDR<0.05)",0.6,23,26,0.884615384615385
+10,44,"Adjusted (direct FDR<0.05)",0.4,15,17,0.882352941176471
+10,44,"Mediation (Direct class)",0.4,14,16,0.875
+10,44,"Strict mediation",0,4,4,1
+10,45,"Standard (total FDR<0.05)",0.4,16,18,0.888888888888889
+10,45,"Adjusted (direct FDR<0.05)",0.4,18,20,0.9
+10,45,"Mediation (Direct class)",0.2,12,13,0.923076923076923
+10,45,"Strict mediation",0,6,6,1
+10,46,"Standard (total FDR<0.05)",0.2,17,18,0.944444444444444
+10,46,"Adjusted (direct FDR<0.05)",0.2,20,21,0.952380952380952
+10,46,"Mediation (Direct class)",0,13,13,1
+10,46,"Strict mediation",0,9,9,1
+10,47,"Standard (total FDR<0.05)",0.8,22,26,0.846153846153846
+10,47,"Adjusted (direct FDR<0.05)",0.6,16,19,0.842105263157895
+10,47,"Mediation (Direct class)",0.6,11,14,0.785714285714286
+10,47,"Strict mediation",0,5,5,1
+10,48,"Standard (total FDR<0.05)",0.8,16,20,0.8
+10,48,"Adjusted (direct FDR<0.05)",0.6,9,12,0.75
+10,48,"Mediation (Direct class)",0.6,7,10,0.7
+10,48,"Strict mediation",0,3,3,1
+10,49,"Standard (total FDR<0.05)",0.6,21,24,0.875
+10,49,"Adjusted (direct FDR<0.05)",0.2,6,7,0.857142857142857
+10,49,"Mediation (Direct class)",0.2,4,5,0.8
+10,49,"Strict mediation",0,2,2,1
+10,50,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+10,50,"Adjusted (direct FDR<0.05)",0.8,18,22,0.818181818181818
+10,50,"Mediation (Direct class)",0.6,15,18,0.833333333333333
+10,50,"Strict mediation",0,8,8,1
+20,1,"Standard (total FDR<0.05)",1,10,15,0.666666666666667
+20,1,"Adjusted (direct FDR<0.05)",1,5,10,0.5
+20,1,"Mediation (Direct class)",0.8,3,7,0.428571428571429
+20,1,"Strict mediation",0,2,2,1
+20,2,"Standard (total FDR<0.05)",0.8,18,22,0.818181818181818
+20,2,"Adjusted (direct FDR<0.05)",0.6,11,14,0.785714285714286
+20,2,"Mediation (Direct class)",0.6,6,9,0.666666666666667
+20,2,"Strict mediation",0,3,3,1
+20,3,"Standard (total FDR<0.05)",1,31,36,0.861111111111111
+20,3,"Adjusted (direct FDR<0.05)",0.8,19,23,0.826086956521739
+20,3,"Mediation (Direct class)",0.8,16,20,0.8
+20,3,"Strict mediation",0,12,12,1
+20,4,"Standard (total FDR<0.05)",0.8,19,23,0.826086956521739
+20,4,"Adjusted (direct FDR<0.05)",0.6,9,12,0.75
+20,4,"Mediation (Direct class)",0.6,6,9,0.666666666666667
+20,4,"Strict mediation",0,6,6,1
+20,5,"Standard (total FDR<0.05)",0.6,18,21,0.857142857142857
+20,5,"Adjusted (direct FDR<0.05)",0.2,12,13,0.923076923076923
+20,5,"Mediation (Direct class)",0.2,8,9,0.888888888888889
+20,5,"Strict mediation",0,5,5,1
+20,6,"Standard (total FDR<0.05)",0.8,18,22,0.818181818181818
+20,6,"Adjusted (direct FDR<0.05)",0.6,4,7,0.571428571428571
+20,6,"Mediation (Direct class)",0.4,3,5,0.6
+20,6,"Strict mediation",0,2,2,1
+20,7,"Standard (total FDR<0.05)",0.6,24,27,0.888888888888889
+20,7,"Adjusted (direct FDR<0.05)",0.4,6,8,0.75
+20,7,"Mediation (Direct class)",0.4,3,5,0.6
+20,7,"Strict mediation",0,3,3,1
+20,8,"Standard (total FDR<0.05)",0.8,12,16,0.75
+20,8,"Adjusted (direct FDR<0.05)",0.6,2,5,0.4
+20,8,"Mediation (Direct class)",0.4,1,3,0.333333333333333
+20,8,"Strict mediation",0,1,1,1
+20,9,"Standard (total FDR<0.05)",0.8,14,18,0.777777777777778
+20,9,"Adjusted (direct FDR<0.05)",0.6,12,15,0.8
+20,9,"Mediation (Direct class)",0.6,7,10,0.7
+20,9,"Strict mediation",0,6,6,1
+20,10,"Standard (total FDR<0.05)",0.8,18,22,0.818181818181818
+20,10,"Adjusted (direct FDR<0.05)",0.4,9,11,0.818181818181818
+20,10,"Mediation (Direct class)",0.4,6,8,0.75
+20,10,"Strict mediation",0,5,5,1
+20,11,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+20,11,"Adjusted (direct FDR<0.05)",1,8,13,0.615384615384615
+20,11,"Mediation (Direct class)",0.8,8,12,0.666666666666667
+20,11,"Strict mediation",0,7,7,1
+20,12,"Standard (total FDR<0.05)",1,27,32,0.84375
+20,12,"Adjusted (direct FDR<0.05)",1,13,18,0.722222222222222
+20,12,"Mediation (Direct class)",0.8,7,11,0.636363636363636
+20,12,"Strict mediation",0,5,5,1
+20,13,"Standard (total FDR<0.05)",0.8,24,28,0.857142857142857
+20,13,"Adjusted (direct FDR<0.05)",0.6,10,13,0.769230769230769
+20,13,"Mediation (Direct class)",0.4,7,9,0.777777777777778
+20,13,"Strict mediation",0,6,6,1
+20,14,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+20,14,"Adjusted (direct FDR<0.05)",0.8,12,16,0.75
+20,14,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+20,14,"Strict mediation",0,6,6,1
+20,15,"Standard (total FDR<0.05)",0.8,22,26,0.846153846153846
+20,15,"Adjusted (direct FDR<0.05)",0.6,13,16,0.8125
+20,15,"Mediation (Direct class)",0.4,13,15,0.866666666666667
+20,15,"Strict mediation",0,9,9,1
+20,16,"Standard (total FDR<0.05)",0.4,17,19,0.894736842105263
+20,16,"Adjusted (direct FDR<0.05)",0,11,11,1
+20,16,"Mediation (Direct class)",0,8,8,1
+20,16,"Strict mediation",0,8,8,1
+20,17,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+20,17,"Adjusted (direct FDR<0.05)",1,11,16,0.6875
+20,17,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+20,17,"Strict mediation",0,3,3,1
+20,18,"Standard (total FDR<0.05)",0.6,25,28,0.892857142857143
+20,18,"Adjusted (direct FDR<0.05)",0.4,18,20,0.9
+20,18,"Mediation (Direct class)",0.4,14,16,0.875
+20,18,"Strict mediation",0,13,13,1
+20,19,"Standard (total FDR<0.05)",0.8,22,26,0.846153846153846
+20,19,"Adjusted (direct FDR<0.05)",0.2,17,18,0.944444444444444
+20,19,"Mediation (Direct class)",0.2,13,14,0.928571428571429
+20,19,"Strict mediation",0,10,10,1
+20,20,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+20,20,"Adjusted (direct FDR<0.05)",0.8,14,18,0.777777777777778
+20,20,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+20,20,"Strict mediation",0,8,8,1
+20,21,"Standard (total FDR<0.05)",1,11,16,0.6875
+20,21,"Adjusted (direct FDR<0.05)",0.6,5,8,0.625
+20,21,"Mediation (Direct class)",0.4,2,4,0.5
+20,21,"Strict mediation",0,2,2,1
+20,22,"Standard (total FDR<0.05)",0.6,18,21,0.857142857142857
+20,22,"Adjusted (direct FDR<0.05)",0.2,11,12,0.916666666666667
+20,22,"Mediation (Direct class)",0.2,8,9,0.888888888888889
+20,22,"Strict mediation",0,7,7,1
+20,23,"Standard (total FDR<0.05)",0.8,22,26,0.846153846153846
+20,23,"Adjusted (direct FDR<0.05)",0.6,12,15,0.8
+20,23,"Mediation (Direct class)",0.4,10,12,0.833333333333333
+20,23,"Strict mediation",0,8,8,1
+20,24,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+20,24,"Adjusted (direct FDR<0.05)",1,18,23,0.782608695652174
+20,24,"Mediation (Direct class)",0.8,12,16,0.75
+20,24,"Strict mediation",0,11,11,1
+20,25,"Standard (total FDR<0.05)",0.8,21,25,0.84
+20,25,"Adjusted (direct FDR<0.05)",0.6,13,16,0.8125
+20,25,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+20,25,"Strict mediation",0,8,8,1
+20,26,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+20,26,"Adjusted (direct FDR<0.05)",0.6,14,17,0.823529411764706
+20,26,"Mediation (Direct class)",0.6,12,15,0.8
+20,26,"Strict mediation",0,8,8,1
+20,27,"Standard (total FDR<0.05)",0.8,18,22,0.818181818181818
+20,27,"Adjusted (direct FDR<0.05)",0.4,6,8,0.75
+20,27,"Mediation (Direct class)",0.2,5,6,0.833333333333333
+20,27,"Strict mediation",0,4,4,1
+20,28,"Standard (total FDR<0.05)",0.8,17,21,0.80952380952381
+20,28,"Adjusted (direct FDR<0.05)",0.6,20,23,0.869565217391304
+20,28,"Mediation (Direct class)",0.6,11,14,0.785714285714286
+20,28,"Strict mediation",0,10,10,1
+20,29,"Standard (total FDR<0.05)",0.8,18,22,0.818181818181818
+20,29,"Adjusted (direct FDR<0.05)",0.6,13,16,0.8125
+20,29,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+20,29,"Strict mediation",0,5,5,1
+20,30,"Standard (total FDR<0.05)",0.8,21,25,0.84
+20,30,"Adjusted (direct FDR<0.05)",0.6,17,20,0.85
+20,30,"Mediation (Direct class)",0.6,13,16,0.8125
+20,30,"Strict mediation",0,9,9,1
+20,31,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+20,31,"Adjusted (direct FDR<0.05)",0.6,16,19,0.842105263157895
+20,31,"Mediation (Direct class)",0.6,10,13,0.769230769230769
+20,31,"Strict mediation",0,9,9,1
+20,32,"Standard (total FDR<0.05)",1,19,24,0.791666666666667
+20,32,"Adjusted (direct FDR<0.05)",0.4,18,20,0.9
+20,32,"Mediation (Direct class)",0.4,12,14,0.857142857142857
+20,32,"Strict mediation",0,9,9,1
+20,33,"Standard (total FDR<0.05)",1,28,33,0.848484848484849
+20,33,"Adjusted (direct FDR<0.05)",0.8,25,29,0.862068965517241
+20,33,"Mediation (Direct class)",0.8,17,21,0.80952380952381
+20,33,"Strict mediation",0,13,13,1
+20,34,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+20,34,"Adjusted (direct FDR<0.05)",1,7,12,0.583333333333333
+20,34,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+20,34,"Strict mediation",0,5,5,1
+20,35,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+20,35,"Adjusted (direct FDR<0.05)",0.6,13,16,0.8125
+20,35,"Mediation (Direct class)",0.6,11,14,0.785714285714286
+20,35,"Strict mediation",0,9,9,1
+20,36,"Standard (total FDR<0.05)",0.6,19,22,0.863636363636364
+20,36,"Adjusted (direct FDR<0.05)",0.4,10,12,0.833333333333333
+20,36,"Mediation (Direct class)",0.4,8,10,0.8
+20,36,"Strict mediation",0,6,6,1
+20,37,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+20,37,"Adjusted (direct FDR<0.05)",1,14,19,0.736842105263158
+20,37,"Mediation (Direct class)",0.8,8,12,0.666666666666667
+20,37,"Strict mediation",0,7,7,1
+20,38,"Standard (total FDR<0.05)",0.6,13,16,0.8125
+20,38,"Adjusted (direct FDR<0.05)",0.2,6,7,0.857142857142857
+20,38,"Mediation (Direct class)",0.2,5,6,0.833333333333333
+20,38,"Strict mediation",0,4,4,1
+20,39,"Standard (total FDR<0.05)",0.8,21,25,0.84
+20,39,"Adjusted (direct FDR<0.05)",0.6,8,11,0.727272727272727
+20,39,"Mediation (Direct class)",0.6,6,9,0.666666666666667
+20,39,"Strict mediation",0,6,6,1
+20,40,"Standard (total FDR<0.05)",0.8,25,29,0.862068965517241
+20,40,"Adjusted (direct FDR<0.05)",0.8,14,18,0.777777777777778
+20,40,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+20,40,"Strict mediation",0,8,8,1
+20,41,"Standard (total FDR<0.05)",0.8,21,25,0.84
+20,41,"Adjusted (direct FDR<0.05)",0.6,13,16,0.8125
+20,41,"Mediation (Direct class)",0.6,9,12,0.75
+20,41,"Strict mediation",0,9,9,1
+20,42,"Standard (total FDR<0.05)",0.6,19,22,0.863636363636364
+20,42,"Adjusted (direct FDR<0.05)",0.8,22,26,0.846153846153846
+20,42,"Mediation (Direct class)",0.4,11,13,0.846153846153846
+20,42,"Strict mediation",0,9,9,1
+20,43,"Standard (total FDR<0.05)",0.8,18,22,0.818181818181818
+20,43,"Adjusted (direct FDR<0.05)",0.6,12,15,0.8
+20,43,"Mediation (Direct class)",0.6,9,12,0.75
+20,43,"Strict mediation",0,7,7,1
+20,44,"Standard (total FDR<0.05)",0.6,15,18,0.833333333333333
+20,44,"Adjusted (direct FDR<0.05)",0.4,6,8,0.75
+20,44,"Mediation (Direct class)",0.4,5,7,0.714285714285714
+20,44,"Strict mediation",0,3,3,1
+20,45,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+20,45,"Adjusted (direct FDR<0.05)",0.6,20,23,0.869565217391304
+20,45,"Mediation (Direct class)",0.4,17,19,0.894736842105263
+20,45,"Strict mediation",0,15,15,1
+20,46,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+20,46,"Adjusted (direct FDR<0.05)",0.8,17,21,0.80952380952381
+20,46,"Mediation (Direct class)",0.8,13,17,0.764705882352941
+20,46,"Strict mediation",0,12,12,1
+20,47,"Standard (total FDR<0.05)",0.6,17,20,0.85
+20,47,"Adjusted (direct FDR<0.05)",0.4,9,11,0.818181818181818
+20,47,"Mediation (Direct class)",0.4,6,8,0.75
+20,47,"Strict mediation",0,3,3,1
+20,48,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+20,48,"Adjusted (direct FDR<0.05)",0.6,4,7,0.571428571428571
+20,48,"Mediation (Direct class)",0.4,3,5,0.6
+20,48,"Strict mediation",0,2,2,1
+20,49,"Standard (total FDR<0.05)",0.6,24,27,0.888888888888889
+20,49,"Adjusted (direct FDR<0.05)",0.6,18,21,0.857142857142857
+20,49,"Mediation (Direct class)",0.4,15,17,0.882352941176471
+20,49,"Strict mediation",0,13,13,1
+20,50,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+20,50,"Adjusted (direct FDR<0.05)",0.6,18,21,0.857142857142857
+20,50,"Mediation (Direct class)",0.6,16,19,0.842105263157895
+20,50,"Strict mediation",0,13,13,1
+40,1,"Standard (total FDR<0.05)",0.8,10,14,0.714285714285714
+40,1,"Adjusted (direct FDR<0.05)",0.6,4,7,0.571428571428571
+40,1,"Mediation (Direct class)",0.6,3,6,0.5
+40,1,"Strict mediation",0,3,3,1
+40,2,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+40,2,"Adjusted (direct FDR<0.05)",1,17,22,0.772727272727273
+40,2,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+40,2,"Strict mediation",0,9,9,1
+40,3,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+40,3,"Adjusted (direct FDR<0.05)",0.8,4,8,0.5
+40,3,"Mediation (Direct class)",0.8,2,6,0.333333333333333
+40,3,"Strict mediation",0,2,2,1
+40,4,"Standard (total FDR<0.05)",0.6,16,19,0.842105263157895
+40,4,"Adjusted (direct FDR<0.05)",0.6,3,6,0.5
+40,4,"Mediation (Direct class)",0.4,3,5,0.6
+40,4,"Strict mediation",0,2,2,1
+40,5,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+40,5,"Adjusted (direct FDR<0.05)",0.6,8,11,0.727272727272727
+40,5,"Mediation (Direct class)",0.4,3,5,0.6
+40,5,"Strict mediation",0,3,3,1
+40,6,"Standard (total FDR<0.05)",1,14,19,0.736842105263158
+40,6,"Adjusted (direct FDR<0.05)",1,12,17,0.705882352941177
+40,6,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+40,6,"Strict mediation",0,5,5,1
+40,7,"Standard (total FDR<0.05)",1,15,20,0.75
+40,7,"Adjusted (direct FDR<0.05)",1,8,13,0.615384615384615
+40,7,"Mediation (Direct class)",0.8,8,12,0.666666666666667
+40,7,"Strict mediation",0,8,8,1
+40,8,"Standard (total FDR<0.05)",1,12,17,0.705882352941177
+40,8,"Adjusted (direct FDR<0.05)",1,4,9,0.444444444444444
+40,8,"Mediation (Direct class)",0.8,2,6,0.333333333333333
+40,8,"Strict mediation",0,2,2,1
+40,9,"Standard (total FDR<0.05)",1,20,25,0.8
+40,9,"Adjusted (direct FDR<0.05)",0.8,14,18,0.777777777777778
+40,9,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+40,9,"Strict mediation",0,9,9,1
+40,10,"Standard (total FDR<0.05)",0.6,24,27,0.888888888888889
+40,10,"Adjusted (direct FDR<0.05)",0.6,17,20,0.85
+40,10,"Mediation (Direct class)",0.4,10,12,0.833333333333333
+40,10,"Strict mediation",0,10,10,1
+40,11,"Standard (total FDR<0.05)",1,14,19,0.736842105263158
+40,11,"Adjusted (direct FDR<0.05)",1,9,14,0.642857142857143
+40,11,"Mediation (Direct class)",0.8,6,10,0.6
+40,11,"Strict mediation",0,5,5,1
+40,12,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+40,12,"Adjusted (direct FDR<0.05)",0.6,14,17,0.823529411764706
+40,12,"Mediation (Direct class)",0.6,12,15,0.8
+40,12,"Strict mediation",0,11,11,1
+40,13,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+40,13,"Adjusted (direct FDR<0.05)",0.8,18,22,0.818181818181818
+40,13,"Mediation (Direct class)",0.8,13,17,0.764705882352941
+40,13,"Strict mediation",0,13,13,1
+40,14,"Standard (total FDR<0.05)",1,16,21,0.761904761904762
+40,14,"Adjusted (direct FDR<0.05)",0.8,9,13,0.692307692307692
+40,14,"Mediation (Direct class)",0.6,7,10,0.7
+40,14,"Strict mediation",0,6,6,1
+40,15,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+40,15,"Adjusted (direct FDR<0.05)",0.6,7,10,0.7
+40,15,"Mediation (Direct class)",0.6,6,9,0.666666666666667
+40,15,"Strict mediation",0,6,6,1
+40,16,"Standard (total FDR<0.05)",0.8,24,28,0.857142857142857
+40,16,"Adjusted (direct FDR<0.05)",0.8,21,25,0.84
+40,16,"Mediation (Direct class)",0.6,15,18,0.833333333333333
+40,16,"Strict mediation",0,13,13,1
+40,17,"Standard (total FDR<0.05)",0.8,22,26,0.846153846153846
+40,17,"Adjusted (direct FDR<0.05)",0.8,10,14,0.714285714285714
+40,17,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+40,17,"Strict mediation",0,8,8,1
+40,18,"Standard (total FDR<0.05)",1,15,20,0.75
+40,18,"Adjusted (direct FDR<0.05)",0.8,9,13,0.692307692307692
+40,18,"Mediation (Direct class)",0.8,6,10,0.6
+40,18,"Strict mediation",0,6,6,1
+40,19,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+40,19,"Adjusted (direct FDR<0.05)",1,9,14,0.642857142857143
+40,19,"Mediation (Direct class)",0.8,6,10,0.6
+40,19,"Strict mediation",0,6,6,1
+40,20,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+40,20,"Adjusted (direct FDR<0.05)",0.8,6,10,0.6
+40,20,"Mediation (Direct class)",0.6,5,8,0.625
+40,20,"Strict mediation",0,5,5,1
+40,21,"Standard (total FDR<0.05)",0.8,27,31,0.870967741935484
+40,21,"Adjusted (direct FDR<0.05)",0.4,17,19,0.894736842105263
+40,21,"Mediation (Direct class)",0.4,13,15,0.866666666666667
+40,21,"Strict mediation",0,12,12,1
+40,22,"Standard (total FDR<0.05)",1,20,25,0.8
+40,22,"Adjusted (direct FDR<0.05)",0.8,15,19,0.789473684210526
+40,22,"Mediation (Direct class)",0.8,13,17,0.764705882352941
+40,22,"Strict mediation",0,11,11,1
+40,23,"Standard (total FDR<0.05)",1,20,25,0.8
+40,23,"Adjusted (direct FDR<0.05)",0.6,6,9,0.666666666666667
+40,23,"Mediation (Direct class)",0.6,5,8,0.625
+40,23,"Strict mediation",0,5,5,1
+40,24,"Standard (total FDR<0.05)",0.8,17,21,0.80952380952381
+40,24,"Adjusted (direct FDR<0.05)",0.8,6,10,0.6
+40,24,"Mediation (Direct class)",0.6,6,9,0.666666666666667
+40,24,"Strict mediation",0,6,6,1
+40,25,"Standard (total FDR<0.05)",0.8,16,20,0.8
+40,25,"Adjusted (direct FDR<0.05)",0.8,15,19,0.789473684210526
+40,25,"Mediation (Direct class)",0.6,5,8,0.625
+40,25,"Strict mediation",0,4,4,1
+40,26,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+40,26,"Adjusted (direct FDR<0.05)",0.8,13,17,0.764705882352941
+40,26,"Mediation (Direct class)",0.6,11,14,0.785714285714286
+40,26,"Strict mediation",0,11,11,1
+40,27,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+40,27,"Adjusted (direct FDR<0.05)",0.6,15,18,0.833333333333333
+40,27,"Mediation (Direct class)",0.6,13,16,0.8125
+40,27,"Strict mediation",0,13,13,1
+40,28,"Standard (total FDR<0.05)",0.8,29,33,0.878787878787879
+40,28,"Adjusted (direct FDR<0.05)",0.4,13,15,0.866666666666667
+40,28,"Mediation (Direct class)",0.4,10,12,0.833333333333333
+40,28,"Strict mediation",0,10,10,1
+40,29,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+40,29,"Adjusted (direct FDR<0.05)",1,16,21,0.761904761904762
+40,29,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+40,29,"Strict mediation",0,11,11,1
+40,30,"Standard (total FDR<0.05)",1,30,35,0.857142857142857
+40,30,"Adjusted (direct FDR<0.05)",0.8,24,28,0.857142857142857
+40,30,"Mediation (Direct class)",0.8,20,24,0.833333333333333
+40,30,"Strict mediation",0,18,18,1
+40,31,"Standard (total FDR<0.05)",1,19,24,0.791666666666667
+40,31,"Adjusted (direct FDR<0.05)",0.6,7,10,0.7
+40,31,"Mediation (Direct class)",0.6,5,8,0.625
+40,31,"Strict mediation",0,5,5,1
+40,32,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+40,32,"Adjusted (direct FDR<0.05)",1,14,19,0.736842105263158
+40,32,"Mediation (Direct class)",0.8,12,16,0.75
+40,32,"Strict mediation",0,12,12,1
+40,33,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+40,33,"Adjusted (direct FDR<0.05)",0.8,13,17,0.764705882352941
+40,33,"Mediation (Direct class)",0.6,7,10,0.7
+40,33,"Strict mediation",0,6,6,1
+40,34,"Standard (total FDR<0.05)",1,16,21,0.761904761904762
+40,34,"Adjusted (direct FDR<0.05)",1,13,18,0.722222222222222
+40,34,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+40,34,"Strict mediation",0,4,4,1
+40,35,"Standard (total FDR<0.05)",0.8,25,29,0.862068965517241
+40,35,"Adjusted (direct FDR<0.05)",0.6,19,22,0.863636363636364
+40,35,"Mediation (Direct class)",0.4,11,13,0.846153846153846
+40,35,"Strict mediation",0,11,11,1
+40,36,"Standard (total FDR<0.05)",0.6,20,23,0.869565217391304
+40,36,"Adjusted (direct FDR<0.05)",0.4,18,20,0.9
+40,36,"Mediation (Direct class)",0.4,13,15,0.866666666666667
+40,36,"Strict mediation",0,13,13,1
+40,37,"Standard (total FDR<0.05)",1,17,22,0.772727272727273
+40,37,"Adjusted (direct FDR<0.05)",1,9,14,0.642857142857143
+40,37,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+40,37,"Strict mediation",0,4,4,1
+40,38,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+40,38,"Adjusted (direct FDR<0.05)",0.8,15,19,0.789473684210526
+40,38,"Mediation (Direct class)",0.8,12,16,0.75
+40,38,"Strict mediation",0,11,11,1
+40,39,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+40,39,"Adjusted (direct FDR<0.05)",1,15,20,0.75
+40,39,"Mediation (Direct class)",0.8,12,16,0.75
+40,39,"Strict mediation",0,10,10,1
+40,40,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+40,40,"Adjusted (direct FDR<0.05)",1,15,20,0.75
+40,40,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+40,40,"Strict mediation",0,9,9,1
+40,41,"Standard (total FDR<0.05)",1,29,34,0.852941176470588
+40,41,"Adjusted (direct FDR<0.05)",1,20,25,0.8
+40,41,"Mediation (Direct class)",0.8,18,22,0.818181818181818
+40,41,"Strict mediation",0,17,17,1
+40,42,"Standard (total FDR<0.05)",1,13,18,0.722222222222222
+40,42,"Adjusted (direct FDR<0.05)",0.8,11,15,0.733333333333333
+40,42,"Mediation (Direct class)",0.6,7,10,0.7
+40,42,"Strict mediation",0,7,7,1
+40,43,"Standard (total FDR<0.05)",0.8,20,24,0.833333333333333
+40,43,"Adjusted (direct FDR<0.05)",0.6,21,24,0.875
+40,43,"Mediation (Direct class)",0.6,13,16,0.8125
+40,43,"Strict mediation",0,12,12,1
+40,44,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+40,44,"Adjusted (direct FDR<0.05)",0.6,18,21,0.857142857142857
+40,44,"Mediation (Direct class)",0.6,10,13,0.769230769230769
+40,44,"Strict mediation",0,10,10,1
+40,45,"Standard (total FDR<0.05)",1,15,20,0.75
+40,45,"Adjusted (direct FDR<0.05)",0.6,12,15,0.8
+40,45,"Mediation (Direct class)",0.6,7,10,0.7
+40,45,"Strict mediation",0,7,7,1
+40,46,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+40,46,"Adjusted (direct FDR<0.05)",1,6,11,0.545454545454545
+40,46,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+40,46,"Strict mediation",0,5,5,1
+40,47,"Standard (total FDR<0.05)",1,28,33,0.848484848484849
+40,47,"Adjusted (direct FDR<0.05)",1,16,21,0.761904761904762
+40,47,"Mediation (Direct class)",0.8,13,17,0.764705882352941
+40,47,"Strict mediation",0,10,10,1
+40,48,"Standard (total FDR<0.05)",0.8,13,17,0.764705882352941
+40,48,"Adjusted (direct FDR<0.05)",0.4,10,12,0.833333333333333
+40,48,"Mediation (Direct class)",0.4,5,7,0.714285714285714
+40,48,"Strict mediation",0,5,5,1
+40,49,"Standard (total FDR<0.05)",0.8,16,20,0.8
+40,49,"Adjusted (direct FDR<0.05)",0.8,9,13,0.692307692307692
+40,49,"Mediation (Direct class)",0.6,5,8,0.625
+40,49,"Strict mediation",0,5,5,1
+40,50,"Standard (total FDR<0.05)",1,20,25,0.8
+40,50,"Adjusted (direct FDR<0.05)",1,20,25,0.8
+40,50,"Mediation (Direct class)",0.8,12,16,0.75
+40,50,"Strict mediation",0,12,12,1
+80,1,"Standard (total FDR<0.05)",1,14,19,0.736842105263158
+80,1,"Adjusted (direct FDR<0.05)",1,9,14,0.642857142857143
+80,1,"Mediation (Direct class)",0.8,4,8,0.5
+80,1,"Strict mediation",0,3,3,1
+80,2,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+80,2,"Adjusted (direct FDR<0.05)",0.4,18,20,0.9
+80,2,"Mediation (Direct class)",0.4,13,15,0.866666666666667
+80,2,"Strict mediation",0,12,12,1
+80,3,"Standard (total FDR<0.05)",1,15,20,0.75
+80,3,"Adjusted (direct FDR<0.05)",1,5,10,0.5
+80,3,"Mediation (Direct class)",0.8,1,5,0.2
+80,3,"Strict mediation",0,1,1,1
+80,4,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+80,4,"Adjusted (direct FDR<0.05)",1,13,18,0.722222222222222
+80,4,"Mediation (Direct class)",0.8,6,10,0.6
+80,4,"Strict mediation",0,5,5,1
+80,5,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+80,5,"Adjusted (direct FDR<0.05)",1,14,19,0.736842105263158
+80,5,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+80,5,"Strict mediation",0,9,9,1
+80,6,"Standard (total FDR<0.05)",1,27,32,0.84375
+80,6,"Adjusted (direct FDR<0.05)",1,12,17,0.705882352941177
+80,6,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+80,6,"Strict mediation",0,9,9,1
+80,7,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+80,7,"Adjusted (direct FDR<0.05)",1,21,26,0.807692307692308
+80,7,"Mediation (Direct class)",0.8,14,18,0.777777777777778
+80,7,"Strict mediation",0,14,14,1
+80,8,"Standard (total FDR<0.05)",1,31,36,0.861111111111111
+80,8,"Adjusted (direct FDR<0.05)",1,17,22,0.772727272727273
+80,8,"Mediation (Direct class)",0.8,14,18,0.777777777777778
+80,8,"Strict mediation",0,13,13,1
+80,9,"Standard (total FDR<0.05)",1,27,32,0.84375
+80,9,"Adjusted (direct FDR<0.05)",0.6,17,20,0.85
+80,9,"Mediation (Direct class)",0.6,14,17,0.823529411764706
+80,9,"Strict mediation",0,13,13,1
+80,10,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+80,10,"Adjusted (direct FDR<0.05)",1,17,22,0.772727272727273
+80,10,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+80,10,"Strict mediation",0,10,10,1
+80,11,"Standard (total FDR<0.05)",1,17,22,0.772727272727273
+80,11,"Adjusted (direct FDR<0.05)",1,7,12,0.583333333333333
+80,11,"Mediation (Direct class)",0.8,2,6,0.333333333333333
+80,11,"Strict mediation",0,2,2,1
+80,12,"Standard (total FDR<0.05)",1,30,35,0.857142857142857
+80,12,"Adjusted (direct FDR<0.05)",0.6,23,26,0.884615384615385
+80,12,"Mediation (Direct class)",0.6,21,24,0.875
+80,12,"Strict mediation",0,19,19,1
+80,13,"Standard (total FDR<0.05)",0.8,33,37,0.891891891891892
+80,13,"Adjusted (direct FDR<0.05)",0.4,16,18,0.888888888888889
+80,13,"Mediation (Direct class)",0.4,14,16,0.875
+80,13,"Strict mediation",0,14,14,1
+80,14,"Standard (total FDR<0.05)",1,19,24,0.791666666666667
+80,14,"Adjusted (direct FDR<0.05)",1,12,17,0.705882352941177
+80,14,"Mediation (Direct class)",0.8,7,11,0.636363636363636
+80,14,"Strict mediation",0,7,7,1
+80,15,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+80,15,"Adjusted (direct FDR<0.05)",1,16,21,0.761904761904762
+80,15,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+80,15,"Strict mediation",0,10,10,1
+80,16,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+80,16,"Adjusted (direct FDR<0.05)",1,18,23,0.782608695652174
+80,16,"Mediation (Direct class)",0.8,15,19,0.789473684210526
+80,16,"Strict mediation",0,15,15,1
+80,17,"Standard (total FDR<0.05)",1,33,38,0.868421052631579
+80,17,"Adjusted (direct FDR<0.05)",1,21,26,0.807692307692308
+80,17,"Mediation (Direct class)",0.8,16,20,0.8
+80,17,"Strict mediation",0,16,16,1
+80,18,"Standard (total FDR<0.05)",1,28,33,0.848484848484849
+80,18,"Adjusted (direct FDR<0.05)",1,12,17,0.705882352941177
+80,18,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+80,18,"Strict mediation",0,5,5,1
+80,19,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+80,19,"Adjusted (direct FDR<0.05)",0.8,18,22,0.818181818181818
+80,19,"Mediation (Direct class)",0.6,13,16,0.8125
+80,19,"Strict mediation",0,11,11,1
+80,20,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+80,20,"Adjusted (direct FDR<0.05)",1,8,13,0.615384615384615
+80,20,"Mediation (Direct class)",0.6,4,7,0.571428571428571
+80,20,"Strict mediation",0,4,4,1
+80,21,"Standard (total FDR<0.05)",1,27,32,0.84375
+80,21,"Adjusted (direct FDR<0.05)",0.8,21,25,0.84
+80,21,"Mediation (Direct class)",0.6,14,17,0.823529411764706
+80,21,"Strict mediation",0,13,13,1
+80,22,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+80,22,"Adjusted (direct FDR<0.05)",1,11,16,0.6875
+80,22,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+80,22,"Strict mediation",0,9,9,1
+80,23,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+80,23,"Adjusted (direct FDR<0.05)",1,12,17,0.705882352941177
+80,23,"Mediation (Direct class)",0.8,6,10,0.6
+80,23,"Strict mediation",0,5,5,1
+80,24,"Standard (total FDR<0.05)",1,28,33,0.848484848484849
+80,24,"Adjusted (direct FDR<0.05)",1,19,24,0.791666666666667
+80,24,"Mediation (Direct class)",0.8,13,17,0.764705882352941
+80,24,"Strict mediation",0,13,13,1
+80,25,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+80,25,"Adjusted (direct FDR<0.05)",1,14,19,0.736842105263158
+80,25,"Mediation (Direct class)",0.8,7,11,0.636363636363636
+80,25,"Strict mediation",0,7,7,1
+80,26,"Standard (total FDR<0.05)",1,17,22,0.772727272727273
+80,26,"Adjusted (direct FDR<0.05)",1,10,15,0.666666666666667
+80,26,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+80,26,"Strict mediation",0,5,5,1
+80,27,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+80,27,"Adjusted (direct FDR<0.05)",0.8,10,14,0.714285714285714
+80,27,"Mediation (Direct class)",0.6,10,13,0.769230769230769
+80,27,"Strict mediation",0,10,10,1
+80,28,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+80,28,"Adjusted (direct FDR<0.05)",1,13,18,0.722222222222222
+80,28,"Mediation (Direct class)",0.6,7,10,0.7
+80,28,"Strict mediation",0,6,6,1
+80,29,"Standard (total FDR<0.05)",0.8,26,30,0.866666666666667
+80,29,"Adjusted (direct FDR<0.05)",0.8,13,17,0.764705882352941
+80,29,"Mediation (Direct class)",0.6,10,13,0.769230769230769
+80,29,"Strict mediation",0,10,10,1
+80,30,"Standard (total FDR<0.05)",1,31,36,0.861111111111111
+80,30,"Adjusted (direct FDR<0.05)",0.8,14,18,0.777777777777778
+80,30,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+80,30,"Strict mediation",0,11,11,1
+80,31,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+80,31,"Adjusted (direct FDR<0.05)",1,19,24,0.791666666666667
+80,31,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+80,31,"Strict mediation",0,10,10,1
+80,32,"Standard (total FDR<0.05)",1,20,25,0.8
+80,32,"Adjusted (direct FDR<0.05)",0.8,12,16,0.75
+80,32,"Mediation (Direct class)",0.6,7,10,0.7
+80,32,"Strict mediation",0,7,7,1
+80,33,"Standard (total FDR<0.05)",1,34,39,0.871794871794872
+80,33,"Adjusted (direct FDR<0.05)",1,18,23,0.782608695652174
+80,33,"Mediation (Direct class)",0.8,14,18,0.777777777777778
+80,33,"Strict mediation",0,14,14,1
+80,34,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+80,34,"Adjusted (direct FDR<0.05)",1,12,17,0.705882352941177
+80,34,"Mediation (Direct class)",0.8,6,10,0.6
+80,34,"Strict mediation",0,6,6,1
+80,35,"Standard (total FDR<0.05)",1,29,34,0.852941176470588
+80,35,"Adjusted (direct FDR<0.05)",1,21,26,0.807692307692308
+80,35,"Mediation (Direct class)",0.8,13,17,0.764705882352941
+80,35,"Strict mediation",0,13,13,1
+80,36,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+80,36,"Adjusted (direct FDR<0.05)",1,15,20,0.75
+80,36,"Mediation (Direct class)",0.8,8,12,0.666666666666667
+80,36,"Strict mediation",0,7,7,1
+80,37,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+80,37,"Adjusted (direct FDR<0.05)",0.8,17,21,0.80952380952381
+80,37,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+80,37,"Strict mediation",0,10,10,1
+80,38,"Standard (total FDR<0.05)",1,27,32,0.84375
+80,38,"Adjusted (direct FDR<0.05)",1,24,29,0.827586206896552
+80,38,"Mediation (Direct class)",0.8,17,21,0.80952380952381
+80,38,"Strict mediation",0,15,15,1
+80,39,"Standard (total FDR<0.05)",1,32,37,0.864864864864865
+80,39,"Adjusted (direct FDR<0.05)",1,13,18,0.722222222222222
+80,39,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+80,39,"Strict mediation",0,7,7,1
+80,40,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+80,40,"Adjusted (direct FDR<0.05)",1,11,16,0.6875
+80,40,"Mediation (Direct class)",0.8,7,11,0.636363636363636
+80,40,"Strict mediation",0,6,6,1
+80,41,"Standard (total FDR<0.05)",1,31,36,0.861111111111111
+80,41,"Adjusted (direct FDR<0.05)",1,21,26,0.807692307692308
+80,41,"Mediation (Direct class)",0.8,18,22,0.818181818181818
+80,41,"Strict mediation",0,17,17,1
+80,42,"Standard (total FDR<0.05)",1,17,22,0.772727272727273
+80,42,"Adjusted (direct FDR<0.05)",1,6,11,0.545454545454545
+80,42,"Mediation (Direct class)",0.8,4,8,0.5
+80,42,"Strict mediation",0,4,4,1
+80,43,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+80,43,"Adjusted (direct FDR<0.05)",0.8,11,15,0.733333333333333
+80,43,"Mediation (Direct class)",0.6,10,13,0.769230769230769
+80,43,"Strict mediation",0,10,10,1
+80,44,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+80,44,"Adjusted (direct FDR<0.05)",1,8,13,0.615384615384615
+80,44,"Mediation (Direct class)",0.8,6,10,0.6
+80,44,"Strict mediation",0,6,6,1
+80,45,"Standard (total FDR<0.05)",0.6,22,25,0.88
+80,45,"Adjusted (direct FDR<0.05)",0.4,12,14,0.857142857142857
+80,45,"Mediation (Direct class)",0.4,9,11,0.818181818181818
+80,45,"Strict mediation",0,8,8,1
+80,46,"Standard (total FDR<0.05)",1,20,25,0.8
+80,46,"Adjusted (direct FDR<0.05)",1,12,17,0.705882352941177
+80,46,"Mediation (Direct class)",0.8,8,12,0.666666666666667
+80,46,"Strict mediation",0,8,8,1
+80,47,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+80,47,"Adjusted (direct FDR<0.05)",0.8,9,13,0.692307692307692
+80,47,"Mediation (Direct class)",0.6,4,7,0.571428571428571
+80,47,"Strict mediation",0,4,4,1
+80,48,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+80,48,"Adjusted (direct FDR<0.05)",0.8,9,13,0.692307692307692
+80,48,"Mediation (Direct class)",0.6,8,11,0.727272727272727
+80,48,"Strict mediation",0,8,8,1
+80,49,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+80,49,"Adjusted (direct FDR<0.05)",0.8,13,17,0.764705882352941
+80,49,"Mediation (Direct class)",0.6,11,14,0.785714285714286
+80,49,"Strict mediation",0,10,10,1
+80,50,"Standard (total FDR<0.05)",0.8,24,28,0.857142857142857
+80,50,"Adjusted (direct FDR<0.05)",0.6,13,16,0.8125
+80,50,"Mediation (Direct class)",0.6,12,15,0.8
+80,50,"Strict mediation",0,12,12,1
+160,1,"Standard (total FDR<0.05)",1,29,34,0.852941176470588
+160,1,"Adjusted (direct FDR<0.05)",0.8,24,28,0.857142857142857
+160,1,"Mediation (Direct class)",0.6,21,24,0.875
+160,1,"Strict mediation",0,20,20,1
+160,2,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+160,2,"Adjusted (direct FDR<0.05)",1,18,23,0.782608695652174
+160,2,"Mediation (Direct class)",0.8,7,11,0.636363636363636
+160,2,"Strict mediation",0,7,7,1
+160,3,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+160,3,"Adjusted (direct FDR<0.05)",0.8,11,15,0.733333333333333
+160,3,"Mediation (Direct class)",0.6,10,13,0.769230769230769
+160,3,"Strict mediation",0,9,9,1
+160,4,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+160,4,"Adjusted (direct FDR<0.05)",1,14,19,0.736842105263158
+160,4,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+160,4,"Strict mediation",0,9,9,1
+160,5,"Standard (total FDR<0.05)",1,27,32,0.84375
+160,5,"Adjusted (direct FDR<0.05)",1,14,19,0.736842105263158
+160,5,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,5,"Strict mediation",0,9,9,1
+160,6,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+160,6,"Adjusted (direct FDR<0.05)",1,8,13,0.615384615384615
+160,6,"Mediation (Direct class)",0.8,2,6,0.333333333333333
+160,6,"Strict mediation",0,2,2,1
+160,7,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+160,7,"Adjusted (direct FDR<0.05)",0.8,14,18,0.777777777777778
+160,7,"Mediation (Direct class)",0.6,12,15,0.8
+160,7,"Strict mediation",0,11,11,1
+160,8,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+160,8,"Adjusted (direct FDR<0.05)",1,16,21,0.761904761904762
+160,8,"Mediation (Direct class)",0.8,8,12,0.666666666666667
+160,8,"Strict mediation",0,8,8,1
+160,9,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+160,9,"Adjusted (direct FDR<0.05)",0.8,12,16,0.75
+160,9,"Mediation (Direct class)",0.6,9,12,0.75
+160,9,"Strict mediation",0,8,8,1
+160,10,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+160,10,"Adjusted (direct FDR<0.05)",1,16,21,0.761904761904762
+160,10,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,10,"Strict mediation",0,9,9,1
+160,11,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+160,11,"Adjusted (direct FDR<0.05)",1,16,21,0.761904761904762
+160,11,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+160,11,"Strict mediation",0,11,11,1
+160,12,"Standard (total FDR<0.05)",1,27,32,0.84375
+160,12,"Adjusted (direct FDR<0.05)",1,20,25,0.8
+160,12,"Mediation (Direct class)",0.8,12,16,0.75
+160,12,"Strict mediation",0,12,12,1
+160,13,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+160,13,"Adjusted (direct FDR<0.05)",1,9,14,0.642857142857143
+160,13,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+160,13,"Strict mediation",0,5,5,1
+160,14,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+160,14,"Adjusted (direct FDR<0.05)",1,18,23,0.782608695652174
+160,14,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+160,14,"Strict mediation",0,11,11,1
+160,15,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+160,15,"Adjusted (direct FDR<0.05)",1,21,26,0.807692307692308
+160,15,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+160,15,"Strict mediation",0,10,10,1
+160,16,"Standard (total FDR<0.05)",1,33,38,0.868421052631579
+160,16,"Adjusted (direct FDR<0.05)",1,13,18,0.722222222222222
+160,16,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+160,16,"Strict mediation",0,10,10,1
+160,17,"Standard (total FDR<0.05)",1,20,25,0.8
+160,17,"Adjusted (direct FDR<0.05)",1,14,19,0.736842105263158
+160,17,"Mediation (Direct class)",0.8,7,11,0.636363636363636
+160,17,"Strict mediation",0,7,7,1
+160,18,"Standard (total FDR<0.05)",1,19,24,0.791666666666667
+160,18,"Adjusted (direct FDR<0.05)",1,13,18,0.722222222222222
+160,18,"Mediation (Direct class)",0.8,4,8,0.5
+160,18,"Strict mediation",0,4,4,1
+160,19,"Standard (total FDR<0.05)",1,30,35,0.857142857142857
+160,19,"Adjusted (direct FDR<0.05)",0.8,16,20,0.8
+160,19,"Mediation (Direct class)",0.6,12,15,0.8
+160,19,"Strict mediation",0,12,12,1
+160,20,"Standard (total FDR<0.05)",1,21,26,0.807692307692308
+160,20,"Adjusted (direct FDR<0.05)",0.6,16,19,0.842105263157895
+160,20,"Mediation (Direct class)",0.6,14,17,0.823529411764706
+160,20,"Strict mediation",0,11,11,1
+160,21,"Standard (total FDR<0.05)",1,20,25,0.8
+160,21,"Adjusted (direct FDR<0.05)",0.8,10,14,0.714285714285714
+160,21,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,21,"Strict mediation",0,9,9,1
+160,22,"Standard (total FDR<0.05)",1,20,25,0.8
+160,22,"Adjusted (direct FDR<0.05)",1,9,14,0.642857142857143
+160,22,"Mediation (Direct class)",0.8,6,10,0.6
+160,22,"Strict mediation",0,6,6,1
+160,23,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+160,23,"Adjusted (direct FDR<0.05)",1,22,27,0.814814814814815
+160,23,"Mediation (Direct class)",0.8,14,18,0.777777777777778
+160,23,"Strict mediation",0,13,13,1
+160,24,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+160,24,"Adjusted (direct FDR<0.05)",0.8,17,21,0.80952380952381
+160,24,"Mediation (Direct class)",0.6,14,17,0.823529411764706
+160,24,"Strict mediation",0,14,14,1
+160,25,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+160,25,"Adjusted (direct FDR<0.05)",1,14,19,0.736842105263158
+160,25,"Mediation (Direct class)",0.8,10,14,0.714285714285714
+160,25,"Strict mediation",0,10,10,1
+160,26,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+160,26,"Adjusted (direct FDR<0.05)",1,25,30,0.833333333333333
+160,26,"Mediation (Direct class)",0.8,19,23,0.826086956521739
+160,26,"Strict mediation",0,17,17,1
+160,27,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+160,27,"Adjusted (direct FDR<0.05)",1,18,23,0.782608695652174
+160,27,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,27,"Strict mediation",0,9,9,1
+160,28,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+160,28,"Adjusted (direct FDR<0.05)",1,12,17,0.705882352941177
+160,28,"Mediation (Direct class)",0.8,7,11,0.636363636363636
+160,28,"Strict mediation",0,7,7,1
+160,29,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+160,29,"Adjusted (direct FDR<0.05)",1,10,15,0.666666666666667
+160,29,"Mediation (Direct class)",0.8,5,9,0.555555555555556
+160,29,"Strict mediation",0,5,5,1
+160,30,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+160,30,"Adjusted (direct FDR<0.05)",1,19,24,0.791666666666667
+160,30,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,30,"Strict mediation",0,9,9,1
+160,31,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+160,31,"Adjusted (direct FDR<0.05)",0.8,9,13,0.692307692307692
+160,31,"Mediation (Direct class)",0.6,7,10,0.7
+160,31,"Strict mediation",0,7,7,1
+160,32,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+160,32,"Adjusted (direct FDR<0.05)",1,19,24,0.791666666666667
+160,32,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,32,"Strict mediation",0,9,9,1
+160,33,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+160,33,"Adjusted (direct FDR<0.05)",0.8,11,15,0.733333333333333
+160,33,"Mediation (Direct class)",0.8,6,10,0.6
+160,33,"Strict mediation",0,5,5,1
+160,34,"Standard (total FDR<0.05)",1,28,33,0.848484848484849
+160,34,"Adjusted (direct FDR<0.05)",1,16,21,0.761904761904762
+160,34,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,34,"Strict mediation",0,9,9,1
+160,35,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+160,35,"Adjusted (direct FDR<0.05)",0.8,14,18,0.777777777777778
+160,35,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,35,"Strict mediation",0,9,9,1
+160,36,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+160,36,"Adjusted (direct FDR<0.05)",0.8,16,20,0.8
+160,36,"Mediation (Direct class)",0.8,15,19,0.789473684210526
+160,36,"Strict mediation",0,14,14,1
+160,37,"Standard (total FDR<0.05)",1,18,23,0.782608695652174
+160,37,"Adjusted (direct FDR<0.05)",1,11,16,0.6875
+160,37,"Mediation (Direct class)",0.8,3,7,0.428571428571429
+160,37,"Strict mediation",0,3,3,1
+160,38,"Standard (total FDR<0.05)",1,20,25,0.8
+160,38,"Adjusted (direct FDR<0.05)",0.8,15,19,0.789473684210526
+160,38,"Mediation (Direct class)",0.6,10,13,0.769230769230769
+160,38,"Strict mediation",0,10,10,1
+160,39,"Standard (total FDR<0.05)",1,24,29,0.827586206896552
+160,39,"Adjusted (direct FDR<0.05)",1,14,19,0.736842105263158
+160,39,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,39,"Strict mediation",0,8,8,1
+160,40,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+160,40,"Adjusted (direct FDR<0.05)",1,13,18,0.722222222222222
+160,40,"Mediation (Direct class)",0.8,6,10,0.6
+160,40,"Strict mediation",0,6,6,1
+160,41,"Standard (total FDR<0.05)",1,32,37,0.864864864864865
+160,41,"Adjusted (direct FDR<0.05)",0.8,14,18,0.777777777777778
+160,41,"Mediation (Direct class)",0.8,12,16,0.75
+160,41,"Strict mediation",0,12,12,1
+160,42,"Standard (total FDR<0.05)",1,26,31,0.838709677419355
+160,42,"Adjusted (direct FDR<0.05)",1,15,20,0.75
+160,42,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+160,42,"Strict mediation",0,11,11,1
+160,43,"Standard (total FDR<0.05)",1,27,32,0.84375
+160,43,"Adjusted (direct FDR<0.05)",1,16,21,0.761904761904762
+160,43,"Mediation (Direct class)",0.8,11,15,0.733333333333333
+160,43,"Strict mediation",0,11,11,1
+160,44,"Standard (total FDR<0.05)",1,22,27,0.814814814814815
+160,44,"Adjusted (direct FDR<0.05)",1,15,20,0.75
+160,44,"Mediation (Direct class)",0.8,9,13,0.692307692307692
+160,44,"Strict mediation",0,9,9,1
+160,45,"Standard (total FDR<0.05)",1,23,28,0.821428571428571
+160,45,"Adjusted (direct FDR<0.05)",1,12,17,0.705882352941177
+160,45,"Mediation (Direct class)",0.8,8,12,0.666666666666667
+160,45,"Strict mediation",0,8,8,1
+160,46,"Standard (total FDR<0.05)",1,27,32,0.84375
+160,46,"Adjusted (direct FDR<0.05)",0.8,17,21,0.80952380952381
+160,46,"Mediation (Direct class)",0.6,12,15,0.8
+160,46,"Strict mediation",0,12,12,1
+160,47,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+160,47,"Adjusted (direct FDR<0.05)",1,15,20,0.75
+160,47,"Mediation (Direct class)",0.8,8,12,0.666666666666667
+160,47,"Strict mediation",0,7,7,1
+160,48,"Standard (total FDR<0.05)",1,25,30,0.833333333333333
+160,48,"Adjusted (direct FDR<0.05)",1,20,25,0.8
+160,48,"Mediation (Direct class)",0.8,14,18,0.777777777777778
+160,48,"Strict mediation",0,11,11,1
+160,49,"Standard (total FDR<0.05)",1,27,32,0.84375
+160,49,"Adjusted (direct FDR<0.05)",0.8,18,22,0.818181818181818
+160,49,"Mediation (Direct class)",0.6,15,18,0.833333333333333
+160,49,"Strict mediation",0,15,15,1
+160,50,"Standard (total FDR<0.05)",1,33,38,0.868421052631579
+160,50,"Adjusted (direct FDR<0.05)",1,21,26,0.807692307692308
+160,50,"Mediation (Direct class)",0.8,15,19,0.789473684210526
+160,50,"Strict mediation",0,15,15,1
