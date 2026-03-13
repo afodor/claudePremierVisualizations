@@ -205,6 +205,9 @@ select.form-input{cursor:pointer}
 .io-hud .hud-stat{font-family:var(--mono);font-weight:600;color:#93bbfc}
 .io-back{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);padding:10px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:var(--ui);font-size:13px;font-weight:700;cursor:pointer;pointer-events:auto;box-shadow:0 4px 16px rgba(37,99,235,.3);transition:all .15s;letter-spacing:-.2px}
 .io-back:hover{background:#1d4ed8;box-shadow:0 6px 20px rgba(37,99,235,.4)}
+.io-future-frame{position:absolute;inset:12px 12px 62px 12px;border:1px solid var(--border);border-radius:10px;background:#08121b;display:none;pointer-events:auto;box-shadow:0 6px 24px rgba(0,0,0,.22)}
+.io-future-frame.show{display:block}
+.io-future-frame iframe{width:100%;height:100%;border:none;border-radius:10px;background:#08121b}
 
 /* HOSPITAL RED CROSS ROTATION */
 @keyframes rotateCross { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
@@ -318,6 +321,7 @@ select.form-input{cursor:pointer}
         <div class="io-chart io-bl"><div class="io-chart-title">Humidity 24h</div><canvas id="ioChart3"></canvas></div>
         <div class="io-chart io-br"><div class="io-chart-title">Temperature 24h</div><canvas id="ioChart4"></canvas></div>
         <div class="io-hud" id="ioHud"></div>
+        <div class="io-future-frame" id="futureHospitalFrame"><iframe id="futureHospitalIframe" title="Future Hospital"></iframe></div>
         <button class="io-back" id="ioBack">&#8592; Back to City</button>
       </div>
       <div class="house-info" id="houseInfo">
@@ -840,6 +844,7 @@ const hospitalLocations = [
   { name: 'Atrium Health Mercy', wx: 38, wz: 20 },
   { name: 'CMC Main Campus', wx: 72, wz: -30 },
   { name: 'VA Medical Center', wx: -70, wz: 40 },
+  { name: 'Future Hospital', wx: 18, wz: 58, future: true },
 ];
 
 const hospitalList = hospitalLocations.map(function(loc, idx) {
@@ -880,6 +885,7 @@ const hospitalList = hospitalLocations.map(function(loc, idx) {
   var last7 = dailyData.slice(-7);
   return {
     id: idx, name: loc.name, wx: loc.wx, wz: loc.wz,
+    future: !!loc.future,
     dailyData: dailyData, diurnalHumidity: diurnalHumidity, diurnalTemp: diurnalTemp,
     humidity: last7.reduce(function(s,d){return s+d.humidity;},0)/7,
     temp: last7.reduce(function(s,d){return s+d.temp;},0)/7,
@@ -2130,6 +2136,7 @@ var _hospitalInteriorData = null;
 var _savedHospCamPos = null;
 var _savedHospCamTarget = null;
 var _hiddenHospMesh = null;
+var _inFutureHospitalView = false;
 
 // Skyscraper interior view state
 var _inSkyscraperView = false;
@@ -2147,6 +2154,55 @@ function disposeHospitalInterior() {
   _hospitalInteriorData = null;
 }
 
+function setOverlayMode(mode) {
+  var charts = document.querySelectorAll('.io-chart');
+  var hud = document.getElementById('ioHud');
+  var futureFrame = document.getElementById('futureHospitalFrame');
+  charts.forEach(function(el) { el.style.display = mode === 'future' ? 'none' : ''; });
+  hud.style.display = mode === 'future' ? 'none' : '';
+  futureFrame.classList.toggle('show', mode === 'future');
+}
+
+function enterFutureHospitalView(hospId) {
+  var hosp = hospitalList[hospId];
+  if (!hosp) return;
+
+  _inHospitalView = true;
+  _inFutureHospitalView = true;
+  _viewedHospitalId = hospId;
+  updateIndicators();
+  controls.minDistance = 0.3;
+  _savedHospCamPos = camera.position.clone();
+  _savedHospCamTarget = controls.target.clone();
+
+  if (typeof hospitalMeshes !== 'undefined') {
+    hospitalMeshes.forEach(function(mesh) {
+      if (mesh.userData.hospId === hospId) {
+        _hiddenHospMesh = mesh;
+        mesh.parent.traverse(function(child) {
+          if (child.isMesh && child.material) {
+            child.userData._savedOpacity = child.material.opacity;
+            child.userData._savedTransparent = child.material.transparent;
+            child.material = child.material.clone();
+            child.material.transparent = true;
+            child.material.opacity = 0.15;
+          }
+        });
+      }
+    });
+  }
+
+  var T = window.THREE;
+  var camTarget = new T.Vector3(hosp.wx, 0.8, hosp.wz);
+  var camPos = new T.Vector3(hosp.wx + 4.0, 3.4, hosp.wz + 5.6);
+  flyTo(camPos, camTarget, 1.2);
+
+  setOverlayMode('future');
+  document.getElementById('interiorOverlay').classList.add('show');
+  document.getElementById('houseInfo').classList.remove('show');
+  document.getElementById('futureHospitalIframe').src = 'hospital.html';
+}
+
 function enterHospitalView(hospId) {
   // Clean up any existing views
   if (_inHouseView) exitHouseView(true);
@@ -2155,8 +2211,13 @@ function enterHospitalView(hospId) {
 
   var hosp = hospitalList[hospId];
   if (!hosp) return;
+  if (hosp.future) {
+    enterFutureHospitalView(hospId);
+    return;
+  }
 
   _inHospitalView = true;
+  _inFutureHospitalView = false;
   _viewedHospitalId = hospId;
   updateIndicators();
   controls.minDistance = 0.3;
@@ -2195,6 +2256,7 @@ function enterHospitalView(hospId) {
   flyTo(camPos, camTarget, 1.2);
 
   // Show hospital-specific overlay charts
+  setOverlayMode('charts');
   showHospitalOverlay(hosp);
 }
 
@@ -2202,6 +2264,7 @@ function exitHospitalView(skipFly) {
   if (!_inHospitalView) return;
   controls.minDistance = 5;
   disposeHospitalInterior();
+  _inFutureHospitalView = false;
   if (_hiddenHospMesh) {
     _hiddenHospMesh.parent.traverse(function(child) {
       if (child.isMesh && child.material && child.userData._savedOpacity !== undefined) {
@@ -2211,6 +2274,7 @@ function exitHospitalView(skipFly) {
     });
     _hiddenHospMesh = null;
   }
+  setOverlayMode('charts');
   hideInteriorOverlay();
   if (!skipFly && _savedHospCamPos && _savedHospCamTarget) {
     flyTo(_savedHospCamPos, _savedHospCamTarget, 1.0);
@@ -2454,6 +2518,7 @@ function showInteriorOverlay(h) {
 
 function hideInteriorOverlay() {
   document.getElementById('interiorOverlay').classList.remove('show');
+  document.getElementById('futureHospitalFrame').classList.remove('show');
   var brChart = document.querySelector('.io-chart.io-br');
   if (brChart) brChart.classList.remove('shifted-left');
 }
@@ -3201,10 +3266,16 @@ function initCity() {
 
   hospitalList.forEach((hosp, hi) => {
     const hGroup = new THREE.Group();
+    const bodyMat = hosp.future ? new THREE.MeshLambertMaterial({ color: 0xcfe6f4 }) : hospBodyMat;
+    const wingMat = hosp.future ? new THREE.MeshLambertMaterial({ color: 0xb8d6ea }) : hospWingMat;
+    const roofMat = hosp.future ? new THREE.MeshLambertMaterial({ color: 0x5d7d98 }) : hospRoofMat;
+    const crossMaterial = hosp.future
+      ? new THREE.MeshStandardMaterial({ color: 0x57d6ff, emissive: 0x1484b5, emissiveIntensity: 0.8 })
+      : crossMat;
 
     // Multi-story hospital: 3 floors, each ~2.5 tall = 7.5 total
     const mainW = 6, floorH = 2.5, nFloors = 3, mainH = floorH * nFloors, mainD = 5;
-    const mainBody = new THREE.Mesh(new THREE.BoxGeometry(mainW, mainH, mainD), hospBodyMat);
+    const mainBody = new THREE.Mesh(new THREE.BoxGeometry(mainW, mainH, mainD), bodyMat);
     mainBody.position.y = mainH / 2;
     mainBody.userData = { isHospital: true, hospId: hi, label: hosp.name, tooltip: hosp.name };
     hGroup.add(mainBody);
@@ -3212,15 +3283,15 @@ function initCity() {
 
     // Side wings (2 floors)
     const wingW = 3, wingH = floorH * 2, wingD = 3;
-    const leftWing = new THREE.Mesh(new THREE.BoxGeometry(wingW, wingH, wingD), hospWingMat);
+    const leftWing = new THREE.Mesh(new THREE.BoxGeometry(wingW, wingH, wingD), wingMat);
     leftWing.position.set(-mainW/2 - wingW/2 + 0.3, wingH/2, 0);
     hGroup.add(leftWing);
-    const rightWing = new THREE.Mesh(new THREE.BoxGeometry(wingW, wingH, wingD), hospWingMat);
+    const rightWing = new THREE.Mesh(new THREE.BoxGeometry(wingW, wingH, wingD), wingMat);
     rightWing.position.set(mainW/2 + wingW/2 - 0.3, wingH/2, 0);
     hGroup.add(rightWing);
 
     // Flat roof
-    var hospRoof = new THREE.Mesh(new THREE.BoxGeometry(mainW + 0.3, 0.15, mainD + 0.3), hospRoofMat);
+    var hospRoof = new THREE.Mesh(new THREE.BoxGeometry(mainW + 0.3, 0.15, mainD + 0.3), roofMat);
     hospRoof.position.set(0, mainH + 0.075, 0);
     hGroup.add(hospRoof);
 
@@ -3260,20 +3331,20 @@ function initCity() {
     hGroup.add(door);
 
     // Hospital name label
-    const hospLabel = makeTextSprite(hosp.name, '#cc2222');
+    const hospLabel = makeTextSprite(hosp.name, hosp.future ? '#0b79aa' : '#cc2222');
     hospLabel.scale.set(5, 0.9, 1);
     hospLabel.position.set(0, mainH + 3.0, 0);
     hGroup.add(hospLabel);
 
     // ── Rotating Red Cross symbol ──
     const crossGroup = new THREE.Group();
-    crossGroup.add(new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.5, 0.15), crossMat));
-    crossGroup.add(new THREE.Mesh(new THREE.BoxGeometry(0.5, 2.0, 0.15), crossMat));
+    crossGroup.add(new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.5, 0.15), crossMaterial));
+    crossGroup.add(new THREE.Mesh(new THREE.BoxGeometry(0.5, 2.0, 0.15), crossMaterial));
     const circMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.3 });
     const circle = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.08, 24), circMat);
     circle.rotation.x = Math.PI/2; circle.position.z = -0.05;
     crossGroup.add(circle);
-    crossGroup.add(new THREE.PointLight(0xff2222, 1.5, 15));
+    crossGroup.add(new THREE.PointLight(hosp.future ? 0x57d6ff : 0xff2222, 1.5, 15));
     crossGroup.position.set(0, mainH + 1.8, 0);
     hGroup.add(crossGroup);
     hospitalCrosses.push(crossGroup);
