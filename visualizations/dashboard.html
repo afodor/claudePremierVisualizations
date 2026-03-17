@@ -83,9 +83,16 @@ body{font-family:var(--ui);background:var(--bg);color:var(--text);font-size:13px
 
 /* HOUSE INFO PANEL (bottom-right overlay) */
 .house-info{position:absolute;bottom:16px;right:16px;width:280px;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12);display:none;font-size:12px;z-index:50}
-.house-info.show{display:block}
-.hi-head{padding:10px 14px;border-bottom:1px solid var(--border-lt);font-weight:700;font-size:13px;display:flex;justify-content:space-between;align-items:center}
-.hi-close{cursor:pointer;color:var(--muted);font-size:16px;line-height:1}
+.house-info.show{display:flex;flex-direction:column}
+.hi-head{padding:8px 10px 8px 14px;border-bottom:1px solid var(--border-lt);font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px;cursor:grab;user-select:none;background:rgba(0,0,0,.02)}
+.hi-head:active{cursor:grabbing}
+.hi-head #hiTitle{flex:1}
+.hi-btn{width:20px;height:20px;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.8);border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#5a6377;line-height:1;flex-shrink:0;transition:all .12s}
+.hi-btn:hover{background:rgba(0,0,0,.1);color:#1a1f2e}
+.hi-btn.hi-close-btn:hover{background:rgba(220,38,38,.2);color:#dc2626;border-color:rgba(220,38,38,.3)}
+.house-info.minimized{width:180px}
+.house-info.minimized .hi-body{display:none}
+.house-info.minimized .hi-minimize{display:none}
 .hi-body{padding:12px 14px}
 .hi-row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border-lt)}
 .hi-row:last-child{border:none}
@@ -188,9 +195,19 @@ select.form-input{cursor:pointer}
 /* INTERIOR OVERLAY (house fly-in view) */
 .interior-overlay{position:absolute;inset:0;z-index:80;pointer-events:none;display:none}
 .interior-overlay.show{display:block}
-.io-chart{position:absolute;width:380px;height:240px;background:rgba(255,255,255,0.92);border-radius:8px;border:1px solid var(--border);padding:4px 4px 2px;backdrop-filter:blur(4px);box-shadow:0 4px 16px rgba(0,0,0,.12);pointer-events:auto;overflow:hidden}
-.io-chart canvas{display:block;width:100%;height:calc(100% - 14px)}
-.io-chart-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);margin-bottom:2px;padding-left:2px}
+.io-chart{position:absolute;width:380px;height:240px;background:rgba(255,255,255,0.95);border-radius:8px;border:1px solid var(--border);backdrop-filter:blur(4px);box-shadow:0 4px 16px rgba(0,0,0,.12);pointer-events:auto;overflow:hidden;display:flex;flex-direction:column}
+.io-chart canvas{display:block;flex:1;min-height:0}
+.io-chart-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);padding:5px 5px 4px 10px;cursor:grab;user-select:none;display:flex;align-items:center;gap:5px;flex-shrink:0;background:rgba(0,0,0,.03);border-bottom:1px solid rgba(0,0,0,.06)}
+.io-chart-title:active{cursor:grabbing}
+.io-chart-title span{flex:1}
+.io-chart-btn{width:20px;height:20px;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.8);border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#5a6377;line-height:1;flex-shrink:0;transition:all .12s}
+.io-chart-btn.minimize{font-size:16px}
+.io-chart-btn:hover{background:rgba(0,0,0,.1);color:#1a1f2e}
+.io-chart-btn.close:hover{background:rgba(220,38,38,.2);color:#dc2626;border-color:rgba(220,38,38,.3)}
+.io-chart.minimized{width:180px;height:28px;border-radius:6px;cursor:pointer}
+.io-chart.minimized canvas{display:none}
+.io-chart.minimized .io-chart-btn.minimize{display:none}
+.io-chart.minimized .io-chart-btn.close{display:none}
 .io-tl{top:60px;left:12px}
 .io-tr{top:310px;left:12px}
 .io-bl{bottom:60px;left:12px}
@@ -203,8 +220,9 @@ select.form-input{cursor:pointer}
 .io-hud .hud-dot.maintenance{background:#d97706;box-shadow:0 0 4px rgba(217,119,6,.5)}
 .io-hud .hud-dot.offline{background:#dc2626;box-shadow:0 0 4px rgba(220,38,38,.5)}
 .io-hud .hud-stat{font-family:var(--mono);font-weight:600;color:#93bbfc}
-.io-back{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);padding:10px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:var(--ui);font-size:13px;font-weight:700;cursor:pointer;pointer-events:auto;box-shadow:0 4px 16px rgba(37,99,235,.3);transition:all .15s;letter-spacing:-.2px}
+.io-back{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);padding:10px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:var(--ui);font-size:13px;font-weight:700;cursor:pointer;pointer-events:auto;box-shadow:0 4px 16px rgba(37,99,235,.3);transition:all .15s;letter-spacing:-.2px;z-index:90;display:none}
 .io-back:hover{background:#1d4ed8;box-shadow:0 6px 20px rgba(37,99,235,.4)}
+.io-back.show{display:block}
 .io-future-frame{position:absolute;inset:12px 12px 62px 12px;border:1px solid var(--border);border-radius:10px;background:#08121b;display:none;pointer-events:auto;box-shadow:0 6px 24px rgba(0,0,0,.22)}
 .io-future-frame.show{display:block}
 .io-future-frame iframe{width:100%;height:100%;border:none;border-radius:10px;background:#08121b}
@@ -239,6 +257,11 @@ select.form-input{cursor:pointer}
 .chat-send{padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:var(--ui);font-size:12px;font-weight:600;cursor:pointer}
 .chat-send:hover{background:#1d4ed8}
 .chat-typing{color:var(--muted);font-style:italic;font-size:11px;padding:4px 0}
+
+/* ANN SCHEMATIC (inside metrics view) */
+.ann-card-body{position:relative;height:420px;overflow:hidden}
+#annCanvas{display:block;width:100%;height:100%}
+.ann-total{position:absolute;bottom:8px;right:14px;font-size:10px;color:var(--muted);font-family:var(--mono)}
 </style>
 </head>
 <body>
@@ -316,16 +339,16 @@ select.form-input{cursor:pointer}
         <div class="cl-labels" id="legLabels" style="display:none"><span id="legLow">1.0</span><span id="legHigh">5.0</span></div>
       </div>
       <div class="interior-overlay" id="interiorOverlay">
-        <div class="io-chart io-tl"><div class="io-chart-title">Taxa Trends (90d)</div><canvas id="ioChart1"></canvas></div>
-        <div class="io-chart io-tr"><div class="io-chart-title">Allergy Score (daily)</div><canvas id="ioChart2"></canvas></div>
-        <div class="io-chart io-bl"><div class="io-chart-title">Humidity 24h</div><canvas id="ioChart3"></canvas></div>
-        <div class="io-chart io-br"><div class="io-chart-title">Temperature 24h</div><canvas id="ioChart4"></canvas></div>
+        <div class="io-chart io-tl minimized"><div class="io-chart-title"><span>Taxa Trends (90d)</span><button class="io-chart-btn minimize" title="Minimize">&#8722;</button><button class="io-chart-btn close" title="Close">&times;</button></div><canvas id="ioChart1"></canvas></div>
+        <div class="io-chart io-tr minimized"><div class="io-chart-title"><span>Allergy Score (daily)</span><button class="io-chart-btn minimize" title="Minimize">&#8722;</button><button class="io-chart-btn close" title="Close">&times;</button></div><canvas id="ioChart2"></canvas></div>
+        <div class="io-chart io-bl minimized"><div class="io-chart-title"><span>Humidity 24h</span><button class="io-chart-btn minimize" title="Minimize">&#8722;</button><button class="io-chart-btn close" title="Close">&times;</button></div><canvas id="ioChart3"></canvas></div>
+        <div class="io-chart io-br minimized"><div class="io-chart-title"><span>Temperature 24h</span><button class="io-chart-btn minimize" title="Minimize">&#8722;</button><button class="io-chart-btn close" title="Close">&times;</button></div><canvas id="ioChart4"></canvas></div>
         <div class="io-hud" id="ioHud"></div>
         <div class="io-future-frame" id="futureHospitalFrame"><iframe id="futureHospitalIframe" title="Future Hospital"></iframe></div>
-        <button class="io-back" id="ioBack">&#8592; Back to City</button>
       </div>
+      <button class="io-back" id="ioBack">&#8592; Back to City</button>
       <div class="house-info" id="houseInfo">
-        <div class="hi-head"><span id="hiTitle">Household #---</span><span class="hi-close" id="hiClose">&times;</span></div>
+        <div class="hi-head"><span id="hiTitle">Household #---</span><button class="hi-btn hi-minimize" id="hiMinimize" title="Minimize">&#8722;</button><button class="hi-btn hi-close-btn" id="hiClose" title="Close">&times;</button></div>
         <div class="hi-body" id="hiBody"></div>
       </div>
     </div>
@@ -342,6 +365,13 @@ select.form-input{cursor:pointer}
         <div class="card"><div class="metric"><div class="metric-v a">0.073</div><div class="metric-l">Best Raw PC |r|</div></div></div>
         <div class="card"><div class="metric"><div class="metric-v b">0.140</div><div class="metric-l">Emb PCA Test R&sup2;</div></div></div>
       </div>
+      <div class="card mb">
+        <div class="card-h"><span class="card-t">AllergyANN Architecture</span><span class="card-badge live">24,833 params</span></div>
+        <div class="card-b ann-card-body">
+          <canvas id="annCanvas"></canvas>
+          <div class="ann-total">Total: <strong>24,833</strong> trainable parameters</div>
+        </div>
+      </div>
       <div class="mgrid mg2 mb">
         <div class="card"><div class="card-h"><span class="card-t">PCA Correlation: Embedding vs Raw</span><span class="card-badge info">10 PCs</span></div><div class="card-b"><canvas id="mPcaChart" class="ch"></canvas><div class="leg"><div class="leg-i"><div class="leg-d" style="background:var(--blue)"></div> Raw</div><div class="leg-i"><div class="leg-d" style="background:var(--orange)"></div> Embedding</div></div></div></div>
         <div class="card"><div class="card-h"><span class="card-t">Training Convergence</span><span class="card-badge info">67 epochs</span></div><div class="card-b"><canvas id="mLossChart" class="ch"></canvas><div class="leg"><div class="leg-i"><div class="leg-d" style="background:var(--blue)"></div> Train</div><div class="leg-i"><div class="leg-d" style="background:var(--red)"></div> Validation</div></div></div></div>
@@ -349,6 +379,15 @@ select.form-input{cursor:pointer}
       <div class="card mb">
         <div class="card-h"><span class="card-t">Cumulative Variance Explained</span></div>
         <div class="card-b"><canvas id="mVarChart" class="ch-s"></canvas><div class="leg"><div class="leg-i"><div class="leg-d" style="background:var(--orange)"></div> Embedding</div><div class="leg-i"><div class="leg-d" style="background:var(--blue)"></div> Raw</div></div></div>
+      </div>
+      <div class="card mb">
+        <div class="card-h"><span class="card-t">Simulation &amp; Data Generation</span><span class="card-badge info">Methods</span></div>
+        <div class="card-b" style="font-size:12px;line-height:1.7;color:var(--text2)">
+          <p style="margin-bottom:10px"><strong style="color:var(--text)">Microbiome simulation.</strong> 500 households (400 train / 100 test), each with 3 family members sampled daily for 90 days, yielding 135,000 person-day observations. 100 microbial taxa are simulated as AR(1) processes on the log-abundance scale, with stability profiles calibrated to Hill et al. (2026) residential P-trap data (CV range 4.9&ndash;26.5%). Each taxon is assigned a mean log-abundance, an autocorrelation coefficient (inversely related to CV), and an innovation standard deviation derived from its CV so that the stationary variance matches the target variability. Taxa are converted to relative abundances via softmax of the exponentiated log-abundances.</p>
+          <p style="margin-bottom:10px"><strong style="color:var(--text)">Environmental covariates.</strong> Five household-level environmental time series are generated per household: temperature (seasonal + AR(1), &sigma;=1.5&deg;C), humidity (correlated with temperature + AR(1), clipped 20&ndash;90%), PM2.5 (AR(1) baseline + episodic Poisson spikes), CO2 (weekly occupancy cycle + AR(1)), and fungal spore concentration (humidity-driven + seasonal). 15 of the 100 taxa are environmentally linked&mdash;5 each to humidity, temperature, and PM2.5&mdash;receiving a coupling impulse proportional to the standardized environmental value at each time step (coupling strength = 0.3).</p>
+          <p style="margin-bottom:10px"><strong style="color:var(--text)">Allergy response.</strong> Daily allergy scores are generated per person as a function of 5 causal taxa (effect sizes 0.10, 0.08, 0.06, 0.04, 0.02 on the log-abundance scale), direct humidity and PM2.5 effects (0.03 and 0.05), person-level baseline (&sigma;=0.30), household random effect (&sigma;=0.20), symptom autocorrelation (AR coefficient = 0.3), and residual noise (&sigma;=0.15). Scores are clamped to 1&ndash;10. The remaining 80 taxa are confounders with no direct causal effect on allergy.</p>
+          <p><strong style="color:var(--text)">ANN training.</strong> Features (100 taxa relative abundances + 5 environmental variables = 105 total) are person-demeaned to remove between-person variation, then standardized. The AllergyANN is trained with Adam (lr=0.001, weight decay=1e-4), batch size 256, MSE loss on demeaned targets, and ReduceLROnPlateau scheduling. Training runs for up to 300 epochs with early stopping (patience 30); the best model was selected at epoch 67. The 32-dimensional embedding layer captures a compressed representation where PC1 correlates with allergy (|r|=0.394), compared to |r|=0.073 for the best raw-feature PC. The embedding concentrates 89.5% of variance in its top 5 PCs vs. 11.0% for raw features.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2105,26 +2144,28 @@ function disposeInterior() {
 function drawOverlayChart(canvasId, drawFn, h) {
   var c = document.getElementById(canvasId);
   if (!c) return;
-  // Use the canvas element's own rendered size (set by CSS)
-  var cRect = c.getBoundingClientRect();
-  var cw = cRect.width;
-  var ch = cRect.height;
-  if (cw < 10 || ch < 10) {
-    // Fallback: compute from parent
-    var pRect = c.parentElement.getBoundingClientRect();
-    cw = pRect.width - 8;
-    ch = pRect.height - 16;
-  }
-  var dp = Math.min(window.devicePixelRatio || 1, 2);
-  c.width = cw * dp;
-  c.height = ch * dp;
-  c.style.width = cw + 'px';
-  c.style.height = ch + 'px';
-  var ctx = c.getContext('2d');
-  ctx.scale(dp, dp);
-  ctx.fillStyle = '#f8f9fb';
-  ctx.fillRect(0, 0, cw, ch);
-  drawFn(ctx, cw, ch, h);
+
+  // Store a redraw function on the canvas so expand can re-invoke it
+  c._ioDraw = function() {
+    var chart = c.closest('.io-chart');
+    if (!chart || chart.classList.contains('minimized') || chart.style.display === 'none') return;
+    var cw = c.clientWidth || c.parentElement.clientWidth - 8;
+    var ch = c.clientHeight || c.parentElement.clientHeight - 30;
+    if (cw < 10 || ch < 10) return;
+    var dp = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = cw * dp;
+    c.height = ch * dp;
+    c.style.width = cw + 'px';
+    c.style.height = ch + 'px';
+    var ctx = c.getContext('2d');
+    ctx.scale(dp, dp);
+    ctx.fillStyle = '#f8f9fb';
+    ctx.fillRect(0, 0, cw, ch);
+    drawFn(ctx, cw, ch, h);
+  };
+
+  // Draw immediately (charts may be minimized, so schedule a retry too)
+  c._ioDraw();
 }
 
 // Hospital view state
@@ -2374,7 +2415,7 @@ function exitSkyscraperView(skipFly) {
 
 function showSkyscraperOverlay(sky) {
   // Update chart titles for skyscraper context
-  var titles = document.querySelectorAll('.io-chart .io-chart-title');
+  var titles = document.querySelectorAll('.io-chart .io-chart-title span');
   if (titles[0]) titles[0].textContent = 'Office Microbiome (90d)';
   if (titles[1]) titles[1].textContent = 'Air Quality Index';
   if (titles[2]) titles[2].textContent = 'HVAC Humidity 24h';
@@ -2435,7 +2476,7 @@ function showSkyscraperOverlay(sky) {
 
 function showHospitalOverlay(hosp) {
   // Update chart titles for hospital context
-  var titles = document.querySelectorAll('.io-chart .io-chart-title');
+  var titles = document.querySelectorAll('.io-chart .io-chart-title span');
   if (titles[0]) titles[0].textContent = 'Pathogen Taxa (90d)';
   if (titles[1]) titles[1].textContent = 'CRE Pathogen Level';
   if (titles[2]) titles[2].textContent = 'ICU Humidity 24h';
@@ -2482,7 +2523,7 @@ function showHospitalOverlay(hosp) {
 
 function showInteriorOverlay(h) {
   // Restore chart titles for house context
-  var titles = document.querySelectorAll('.io-chart .io-chart-title');
+  var titles = document.querySelectorAll('.io-chart .io-chart-title span');
   if (titles[0]) titles[0].textContent = 'Taxa Trends (90d)';
   if (titles[1]) titles[1].textContent = 'Allergy Score (daily)';
   if (titles[2]) titles[2].textContent = 'Humidity 24h';
@@ -2521,7 +2562,103 @@ function hideInteriorOverlay() {
   document.getElementById('futureHospitalFrame').classList.remove('show');
   var brChart = document.querySelector('.io-chart.io-br');
   if (brChart) brChart.classList.remove('shifted-left');
+  // Reset charts to minimized, visible, and original positions when leaving
+  document.querySelectorAll('.io-chart').forEach(function(chart) {
+    chart.classList.add('minimized');
+    chart.style.display = '';
+    chart.style.removeProperty('left');
+    chart.style.removeProperty('top');
+    chart.style.removeProperty('bottom');
+    chart.style.removeProperty('right');
+  });
 }
+
+// ════════════════════════════════════════
+// IO-CHART: Drag & Minimize/Expand
+// ════════════════════════════════════════
+
+(function() {
+  function redrawChart(chart) {
+    var canvas = chart.querySelector('canvas');
+    if (canvas && canvas._ioDraw) {
+      // Wait for layout to settle then redraw at correct size
+      setTimeout(function() { canvas._ioDraw(); }, 50);
+    }
+  }
+
+  function expandChart(chart) {
+    chart.classList.remove('minimized');
+    chart.style.display = '';
+    redrawChart(chart);
+  }
+
+  function minimizeChart(chart) {
+    chart.classList.add('minimized');
+  }
+
+  // Minimize button (the "−")
+  document.querySelectorAll('.io-chart-btn.minimize').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      minimizeChart(btn.closest('.io-chart'));
+    });
+  });
+
+  // Close button (the "×") — hides the chart entirely
+  document.querySelectorAll('.io-chart-btn.close').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      btn.closest('.io-chart').style.display = 'none';
+    });
+  });
+
+  // Click anywhere on minimized chart to expand
+  document.querySelectorAll('.io-chart').forEach(function(chart) {
+    chart.addEventListener('click', function(e) {
+      if (!chart.classList.contains('minimized')) return;
+      if (e.target.classList.contains('io-chart-btn')) return;
+      expandChart(chart);
+    });
+  });
+
+  // Drag by title bar (only when expanded)
+  var dragChart = null, dragOffX = 0, dragOffY = 0, didDrag = false;
+
+  document.querySelectorAll('.io-chart-title').forEach(function(titleBar) {
+    titleBar.addEventListener('mousedown', function(e) {
+      if (e.target.classList.contains('io-chart-btn')) return;
+      var chart = titleBar.closest('.io-chart');
+      if (chart.classList.contains('minimized')) return;
+      var rect = chart.getBoundingClientRect();
+      var parentRect = chart.parentElement.getBoundingClientRect();
+      chart.style.left = (rect.left - parentRect.left) + 'px';
+      chart.style.top = (rect.top - parentRect.top) + 'px';
+      chart.style.bottom = 'auto';
+      chart.style.right = 'auto';
+      dragChart = chart;
+      dragOffX = e.clientX - rect.left;
+      dragOffY = e.clientY - rect.top;
+      didDrag = false;
+      e.preventDefault();
+    });
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!dragChart) return;
+    didDrag = true;
+    var parentRect = dragChart.parentElement.getBoundingClientRect();
+    var newLeft = e.clientX - parentRect.left - dragOffX;
+    var newTop = e.clientY - parentRect.top - dragOffY;
+    newLeft = Math.max(0, Math.min(parentRect.width - dragChart.offsetWidth, newLeft));
+    newTop = Math.max(0, Math.min(parentRect.height - dragChart.offsetHeight, newTop));
+    dragChart.style.left = newLeft + 'px';
+    dragChart.style.top = newTop + 'px';
+  });
+
+  document.addEventListener('mouseup', function() {
+    dragChart = null;
+  });
+})();
 
 function enterHouseView(hhId) {
   if (_inHospitalView) exitHospitalView(true); // clean up hospital view
@@ -2662,7 +2799,7 @@ function switchView(v) {
   document.getElementById('viewTitle').textContent = viewTitles[v];
 
   if (v === 'metrics') {
-    setTimeout(() => { drawPCABarChart(); drawLossChart(); drawVarChart(); }, 50);
+    setTimeout(() => { drawPCABarChart(); drawLossChart(); drawVarChart(); drawANNSchematic(); }, 50);
   } else if (v === 'pca') {
     requestAnimationFrame(function() { setTimeout(drawPCA, 50); });
   } else if (v === 'scatter') {
@@ -3541,6 +3678,8 @@ function updateIndicators() {
   if (!window._houseIndicators || !window._houseIndicators.length) return;
   try {
     var inView = typeof _inHouseView !== 'undefined' && (_inHouseView || _inHospitalView || _inSkyscraperView);
+    var backBtn = document.getElementById('ioBack');
+    if (backBtn) backBtn.classList.toggle('show', inView);
     window._houseIndicators.forEach(function(ind) {
       if (inView) { ind.visible = false; return; }
       var h = households[ind.userData.hhId];
@@ -3889,13 +4028,64 @@ function showHouseInfo(id) {
     if (k === 'Alert' && h.alert) vc = 'style="color:var(--red)"';
     return '<div class="hi-row"><span class="hi-k">' + k + '</span><span class="hi-v" ' + vc + '>' + v + '</span></div>';
   }).join('');
+  panel.classList.remove('minimized');
+  panel.style.removeProperty('left');
+  panel.style.removeProperty('top');
+  panel.style.removeProperty('bottom');
+  panel.style.removeProperty('right');
   panel.classList.add('show');
 }
 
 document.getElementById('hiClose').addEventListener('click', () => {
-  document.getElementById('houseInfo').classList.remove('show');
+  var hi = document.getElementById('houseInfo');
+  hi.classList.remove('show');
+  hi.classList.remove('minimized');
+  hi.style.removeProperty('left');
+  hi.style.removeProperty('top');
+  hi.style.removeProperty('bottom');
+  hi.style.removeProperty('right');
   zoomOut();
 });
+
+// Minimize button on house info panel
+document.getElementById('hiMinimize').addEventListener('click', () => {
+  document.getElementById('houseInfo').classList.add('minimized');
+});
+
+// Click on minimized house info to expand
+document.getElementById('houseInfo').addEventListener('click', function(e) {
+  if (!this.classList.contains('minimized')) return;
+  if (e.target.classList.contains('hi-btn')) return;
+  this.classList.remove('minimized');
+});
+
+// Drag house info panel by header
+(function() {
+  var dragHI = null, hiOffX = 0, hiOffY = 0;
+  document.querySelector('#houseInfo .hi-head').addEventListener('mousedown', function(e) {
+    if (e.target.classList.contains('hi-btn')) return;
+    var panel = document.getElementById('houseInfo');
+    var rect = panel.getBoundingClientRect();
+    var parentRect = panel.parentElement.getBoundingClientRect();
+    panel.style.left = (rect.left - parentRect.left) + 'px';
+    panel.style.top = (rect.top - parentRect.top) + 'px';
+    panel.style.bottom = 'auto';
+    panel.style.right = 'auto';
+    dragHI = panel;
+    hiOffX = e.clientX - rect.left;
+    hiOffY = e.clientY - rect.top;
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', function(e) {
+    if (!dragHI) return;
+    var parentRect = dragHI.parentElement.getBoundingClientRect();
+    var newLeft = Math.max(0, Math.min(parentRect.width - dragHI.offsetWidth, e.clientX - parentRect.left - hiOffX));
+    var newTop = Math.max(0, Math.min(parentRect.height - dragHI.offsetHeight, e.clientY - parentRect.top - hiOffY));
+    dragHI.style.left = newLeft + 'px';
+    dragHI.style.top = newTop + 'px';
+  });
+  document.addEventListener('mouseup', function() { dragHI = null; });
+})();
 
 // ════════════════════════════════════════
 // SECTION 7: Back button and Escape key for house view
@@ -3905,6 +4095,8 @@ document.getElementById('ioBack').addEventListener('click', function() {
   if (_inHospitalView) exitHospitalView(false);
   else if (_inSkyscraperView) exitSkyscraperView(false);
   else exitHouseView(false);
+  // Always zoom out to full city view
+  setTimeout(function() { zoomOut(); }, 100);
 });
 
 document.addEventListener('keydown', function(e) {
@@ -4070,7 +4262,7 @@ document.getElementById('scatterCanvas').addEventListener('click', (e) => {
     const dx = pt.x * dp - cx, dy = pt.y * dp - cy;
     if (dx * dx + dy * dy < 100) {
       switchView('city');
-      setTimeout(() => { zoomToHouse(pt.hhId); showHouseInfo(pt.hhId); }, 200);
+      setTimeout(() => { enterHouseView(pt.hhId); }, 300);
       return;
     }
   }
@@ -4402,10 +4594,182 @@ function onWindowResize() {
 }
 window.addEventListener('resize', () => {
   onWindowResize();
-  if (currentView === 'metrics') { drawPCABarChart(); drawLossChart(); drawVarChart(); }
+  if (currentView === 'metrics') { drawPCABarChart(); drawLossChart(); drawVarChart(); drawANNSchematic(); }
   if (currentView === 'pca') drawPCA();
   if (currentView === 'scatter') drawScatter();
 });
+
+// ════════════════════════════════════════
+// ANN SCHEMATIC PANEL — Neural Network Diagram
+// ════════════════════════════════════════
+
+function drawANNSchematic() {
+  var canvas = document.getElementById('annCanvas');
+  if (!canvas) return;
+  var container = canvas.parentElement;
+  var W = container.clientWidth;
+  var H = container.clientHeight;
+  if (W < 10 || H < 10) return;
+  var dpr = window.devicePixelRatio || 1;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  var ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  var fontUI = getComputedStyle(document.body).fontFamily;
+  var fontMono = "'JetBrains Mono',monospace";
+
+  // Layers drawn left-to-right (horizontal layout)
+  var layers = [
+    { label: 'Input',        dim: '105',  nodes: 8, color: '#6b7280', params: 0     },
+    { label: 'Linear',       dim: '128',  nodes: 7, color: '#3b82f6', params: 13568 },
+    { label: 'BN+ReLU+Drop', dim: '128',  nodes: 7, color: '#60a5fa', params: 256   },
+    { label: 'Linear',       dim: '64',   nodes: 5, color: '#3b82f6', params: 8256  },
+    { label: 'BN+ReLU+Drop', dim: '64',   nodes: 5, color: '#60a5fa', params: 128   },
+    { label: 'Linear',       dim: '32',   nodes: 4, color: '#8b5cf6', params: 2080  },
+    { label: 'ReLU',         dim: '32',   nodes: 4, color: '#a78bfa', params: 0     },
+    { label: 'Linear',       dim: '16',   nodes: 3, color: '#f59e0b', params: 528   },
+    { label: 'ReLU',         dim: '16',   nodes: 3, color: '#fbbf24', params: 0     },
+    { label: 'Output',       dim: '1',    nodes: 1, color: '#16a34a', params: 17    },
+  ];
+
+  var sections = [
+    { name: 'ENCODER',   color: '#3b82f6', start: 1, end: 4 },
+    { name: 'EMBEDDING', color: '#8b5cf6', start: 5, end: 6 },
+    { name: 'HEAD',      color: '#f59e0b', start: 7, end: 9 },
+  ];
+
+  var nLayers = layers.length;
+  var padL = 40, padR = 40, padTop = 52, padBot = 50;
+  var layerGap = (W - padL - padR) / (nLayers - 1);
+  var maxNodeH = H - padTop - padBot;
+  var nodeR = Math.min(7, Math.max(4, maxNodeH / 24));
+
+  // Draw connections (behind everything)
+  ctx.globalAlpha = 0.07;
+  for (var i = 0; i < nLayers - 1; i++) {
+    var x1 = padL + i * layerGap;
+    var x2 = padL + (i + 1) * layerGap;
+    var n1 = layers[i].nodes;
+    var n2 = layers[i + 1].nodes;
+    var h1 = Math.min(maxNodeH, n1 * (nodeR * 2 + 6));
+    var h2 = Math.min(maxNodeH, n2 * (nodeR * 2 + 6));
+    var cy = padTop + maxNodeH / 2;
+    for (var a = 0; a < n1; a++) {
+      var y1 = cy - h1 / 2 + (n1 > 1 ? a * (h1 / (n1 - 1)) : 0);
+      for (var b = 0; b < n2; b++) {
+        var y2 = cy - h2 / 2 + (n2 > 1 ? b * (h2 / (n2 - 1)) : 0);
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.strokeStyle = layers[i + 1].color;
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      }
+    }
+  }
+  ctx.globalAlpha = 1;
+
+  // Draw section brackets along the bottom
+  var bracketY = H - 26;
+  for (var s = 0; s < sections.length; s++) {
+    var sec = sections[s];
+    var xStart = padL + sec.start * layerGap - layerGap * 0.3;
+    var xEnd = padL + sec.end * layerGap + layerGap * 0.3;
+    ctx.beginPath();
+    ctx.moveTo(xStart, bracketY - 5);
+    ctx.lineTo(xStart, bracketY);
+    ctx.lineTo(xEnd, bracketY);
+    ctx.lineTo(xEnd, bracketY - 5);
+    ctx.strokeStyle = sec.color;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Section label
+    ctx.font = '600 9px ' + fontUI;
+    ctx.fillStyle = sec.color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(sec.name, (xStart + xEnd) / 2, bracketY + 3);
+  }
+
+  // Draw nodes, labels, and param counts
+  var cy = padTop + maxNodeH / 2;
+  for (var i = 0; i < nLayers; i++) {
+    var layer = layers[i];
+    var x = padL + i * layerGap;
+    var n = layer.nodes;
+    var h = Math.min(maxNodeH, n * (nodeR * 2 + 6));
+
+    // Nodes (vertical column)
+    for (var j = 0; j < n; j++) {
+      var y = cy - h / 2 + (n > 1 ? j * (h / (n - 1)) : 0);
+      // Glow
+      ctx.beginPath();
+      ctx.arc(x, y, nodeR + 3, 0, Math.PI * 2);
+      ctx.fillStyle = layer.color;
+      ctx.globalAlpha = 0.13;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      // Node
+      ctx.beginPath();
+      ctx.arc(x, y, nodeR, 0, Math.PI * 2);
+      ctx.fillStyle = layer.color;
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Label above (layer type)
+    ctx.save();
+    ctx.translate(x, padTop - 28);
+    ctx.rotate(-Math.PI / 4);
+    ctx.font = '600 9px ' + fontUI;
+    ctx.fillStyle = '#1a1f2e';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(layer.label, 0, 0);
+    ctx.restore();
+
+    // Dimension label just above nodes
+    ctx.font = '500 9px ' + fontMono;
+    ctx.fillStyle = layer.color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(layer.dim, x, cy - h / 2 - nodeR - 4);
+
+    // Param count below nodes
+    if (layer.params > 0) {
+      ctx.font = '400 8px ' + fontMono;
+      ctx.fillStyle = '#8b95a8';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(layer.params.toLocaleString(), x, cy + h / 2 + nodeR + 5);
+    }
+  }
+
+  // Flow arrows between columns
+  ctx.strokeStyle = '#d0d5dd';
+  ctx.lineWidth = 1;
+  for (var i = 0; i < nLayers - 1; i++) {
+    var x1 = padL + i * layerGap + nodeR + 3;
+    var x2 = padL + (i + 1) * layerGap - nodeR - 3;
+    if (x2 - x1 > 4) {
+      ctx.beginPath();
+      ctx.moveTo(x1, cy);
+      ctx.lineTo(x2, cy);
+      ctx.stroke();
+      // Arrowhead
+      ctx.beginPath();
+      ctx.moveTo(x2 - 4, cy - 3);
+      ctx.lineTo(x2, cy);
+      ctx.lineTo(x2 - 4, cy + 3);
+      ctx.stroke();
+    }
+  }
+}
 
 // Init: build arch list, wait for Three.js
 buildArchList();
